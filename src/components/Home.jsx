@@ -1,4 +1,4 @@
-import { FaDownload, FaProjectDiagram, FaEnvelope, FaGithub, FaChevronDown } from 'react-icons/fa'
+import { FaEye, FaProjectDiagram, FaEnvelope, FaGithub, FaChevronDown } from 'react-icons/fa'
 import './Home.css'
 
 const Home = () => {
@@ -19,8 +19,8 @@ const Home = () => {
           </h1>
           <p className="hero-subtitle">Ingénieur en IA et BIG DATA</p>
           <div className="hero-buttons">
-            <a href="\Georges BIRANGOU.pdf" className="btn btn-primary">
-              <FaDownload /> Télécharger mon CV
+            <a href="/Portfolio/Georges BIRANGOU.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              <FaEye /> Voir mon CV
             </a>
             <button
               className="btn btn-secondary"

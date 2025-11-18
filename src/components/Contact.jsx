@@ -27,7 +27,7 @@ const Contact = () => {
               <div>
                 <h4>LinkedIn</h4>
                 <a
-                  href="https://www.linkedin.com/in/gegegithub"
+                  href="https://www.linkedin.com/in/georges-birangou-09ab50356"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -35,6 +35,29 @@ const Contact = () => {
                 </a>
               </div>
             </div>
+            <div className="contact-item">
+              <FaGithub />
+              <div>
+                <h4>GitHub</h4>
+                <a
+                  href="https://github.com/gegegithub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  gegegithub
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="contact-actions">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Ge.birangou.26@eigsica.ma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-contact-email"
+            >
+              <FaEnvelope /> Me contacter par Email
+            </a>
           </div>
           <div className="social-links">
             <a
@@ -46,7 +69,7 @@ const Contact = () => {
               <FaGithub />
             </a>
             <a
-              href="https://www.linkedin.com/in/georges-birangou"
+              href="https://linkedin.com/in/georges-birangou-09ab50356"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"

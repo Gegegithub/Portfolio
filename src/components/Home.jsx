@@ -34,14 +34,6 @@ const Home = () => {
             >
               <FaEnvelope /> Me contacter
             </button>
-            <a
-              href="https://github.com/gegegithub"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-            >
-              <FaGithub /> Accéder à mon GitHub
-            </a>
           </div>
         </div>
       </div>

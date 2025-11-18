@@ -189,29 +189,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        {/* Expérience Professionnelle */}
-        <div className="experience-section">
-          <h3 className="section-subtitle">Expérience Professionnelle</h3>
-          <div className="experience-card">
-            <h4>Application Mobile de Gestion de Bibliothèque</h4>
-            <p className="experience-company">Chambre de Commerce de Casablanca</p>
-            <p className="experience-description">
-              Conception et développement d'une application mobile multiplateforme en React Native
-              destinée à moderniser la gestion de la bibliothèque interne et digitaliser un
-              patrimoine documentaire riche.
-            </p>
-            <ul className="experience-achievements">
-              <li>
-                Développement React Native avec authentification multi-rôles (Lecteur,
-                Bibliothécaire, Personnel Administratif)
-              </li>
-              <li>Gestion complète des ouvrages (ajout, recherche, favoris, suppression)</li>
-              <li>Système de rendez-vous pour la consultation d'ouvrages</li>
-              <li>Tableau de bord analytique pour le suivi des activités</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
   )

@@ -35,6 +35,7 @@ const Home = () => {
               <FaEnvelope /> Me contacter
             </button>
           </div>
+          <p className="availability-message">Disponible pour un stage PFE (Janvier 2026)</p>
         </div>
       </div>
       <div className="scroll-indicator" onClick={() => scrollToSection('about')}>

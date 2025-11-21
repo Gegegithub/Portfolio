@@ -49,10 +49,7 @@
 .name {
   font-size: 3.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-color);
   animation: fadeInUp 1s ease-out 0.4s both;
 }
 
@@ -69,6 +66,28 @@
   gap: 1rem;
   justify-content: center;
   animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.availability-message {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  animation: fadeInUp 1s ease-out 1s both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.availability-message::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .scroll-indicator {

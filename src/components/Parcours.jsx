@@ -23,17 +23,17 @@ const Parcours = () => {
   const experiences = [
     {
       id: 1,
-      periode: '01/07/2024 - 05/08/2024',
-      titre: 'STAGE DEVELOPPEMENT WEB',
-      entreprise: 'Texefa SARL',
-      description: 'Mission : Réalisation d\'un site web d\'organisation de conférences internationales en télétravail.'
-    },
-    {
-      id: 2,
       periode: '23/06/2025 - 12/09/2025',
       titre: 'STAGE DEVELOPPEMENT MOBILE & ANALYTICS',
       entreprise: 'Chambre de Commerce de Casablanca-Settat',
       description: 'Mission : Développement d\'une application mobile de gestion et suivi des livres avec tableau de bord interactif pour la bibliothèque de la Chambre.'
+    },
+    {
+      id: 2,
+      periode: '01/07/2024 - 05/08/2024',
+      titre: 'STAGE DEVELOPPEMENT WEB',
+      entreprise: 'Texefa SARL',
+      description: 'Mission : Réalisation d\'un site web d\'organisation de conférences internationales en télétravail.'
     }
   ]
 

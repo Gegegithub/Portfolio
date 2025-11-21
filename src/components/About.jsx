@@ -43,7 +43,6 @@ const About = () => {
       { icon: <SiPandas />, name: 'Pandas' },
       { icon: <SiNumpy />, name: 'NumPy' },
       { icon: <SiJupyter />, name: 'Jupyter' },
-      { icon: <FaTools />, name: 'n8n' },
     ],
     database: [
       { icon: <SiPostgresql />, name: 'PostgreSQL' },
@@ -67,6 +66,8 @@ const About = () => {
       { icon: <FaGithub />, name: 'GitHub' },
       { icon: <FaDocker />, name: 'Docker' },
       { icon: <FaBrain />, name: 'CUDA' },
+      { icon: <FaTools />, name: 'n8n' },
+      { icon: <FaBrain />, name: 'ClearML' },
     ],
   }
 

@@ -40,6 +40,7 @@ J'ai utilisé l'architecture U-Net, particulièrement adaptée pour la segmentat
         'Évaluation de la performance du modèle sur différents types de défauts'
       ],
       technologies: ['Python', 'U-Net', 'Deep Learning', 'Computer Vision', 'PyTorch'],
+      githubUrl: 'https://github.com/Gegegithub/U-Net-Segmentation',
       color: '#8b5cf6'
     },
     {
@@ -69,6 +70,7 @@ Pour le suivi et la sauvegarde des expériences, j'ai utilisé ClearML, un super
         'Comprendre les enjeux du Deep Learning en imagerie médicale'
       ],
       technologies: ['Python', 'CNN', 'ResNet50', 'Transfer Learning', 'ClearML'],
+      githubUrl: 'https://github.com/Gegegithub/tumor_detection',
       color: '#8b5cf6'
     },
     {
@@ -98,7 +100,7 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
         'Travailler sur l\'intégration d\'une IA dans une chaîne temps réel',
         'Valoriser mes compétences en Python, machine learning, et systèmes distribués'
       ],
-      technologies: ['Kafka', 'Spark', 'Python', '+2'],
+      technologies: ['Kafka', 'Spark', 'Python', 'MQTT', 'TimescaleDB', 'MinIO', 'Grafana'],
       githubUrl: 'https://github.com/Gegegithub/Raffinerie-iot',
       color: '#0ea5e9'
     },
@@ -127,6 +129,26 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
     },
     {
       id: 6,
+      category: 'Développement Web',
+      date: 'Mars 2024',
+      title: 'Site Web Django - Plateforme E-commerce',
+      shortDescription: 'Plateforme e-commerce développée avec Django incluant CI/CD avec GitHub Actions pour le déploiement automatique',
+      fullDescription: `Un projet e-commerce simple et élégant développé avec Django, présentant des produits électroniques avec un système de catégories. Ce projet m'a permis d'explorer de nouvelles pratiques de développement, notamment la mise en place d'un pipeline CI/CD avec GitHub Actions pour automatiser les tests et le déploiement.`,
+      achievements: [
+        'Liste et détail des produits avec navigation intuitive',
+        'Système de catégories pour organiser les produits',
+        'Interface moderne et responsive avec Bootstrap 5',
+        'Gestion des images de produits avec Pillow',
+        'Interface d\'administration Django complète',
+        'Système de gestion de stock',
+        'Pipeline CI/CD avec GitHub Actions pour le déploiement automatique'
+      ],
+      technologies: ['Django', 'Python', 'Bootstrap 5', 'GitHub Actions', 'CI/CD', 'SQLite'],
+      githubUrl: 'https://github.com/Gegegithub/E-commerce',
+      color: '#10b981'
+    },
+    {
+      id: 7,
       category: 'Développement Web',
       date: 'Janvier 2024',
       title: 'Site Web Django - Gestion de Bibliothèque',

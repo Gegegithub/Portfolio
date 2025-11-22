@@ -18,8 +18,10 @@
 
 .profile-image {
   width: 350px;
-  height: 350px;
+  height: auto;
+  max-height: 450px;
   object-fit: cover;
+  object-position: top;
   border-radius: 1.5rem;
   box-shadow: 0 20px 60px var(--glow-color);
   transition: var(--transition);

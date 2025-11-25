@@ -15,7 +15,7 @@ const Parcours = () => {
       id: 2,
       periode: '2020 - 2021',
       titre: 'Baccalauréat Scientifique - Série D - Math & SVT',
-      etablissement: 'Lycée',
+      etablissement: 'Lycée Calasanz',
       lieu: 'Libreville, Gabon'
     }
   ]

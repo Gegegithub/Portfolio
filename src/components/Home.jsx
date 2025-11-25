@@ -17,7 +17,7 @@ const Home = () => {
             <span className="hello">Hello World,</span>
             <span className="name">Je suis Georges BIRANGOU</span>
           </h1>
-          <p className="hero-subtitle">Ingénieur en IA et BIG DATA</p>
+          <p className="hero-subtitle">Turning complex data into actionable insights using advanced AI & Deep Learning.</p>
           <div className="hero-buttons">
             <a href="/Portfolio/Georges BIRANGOU.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               <FaEye /> Voir mon CV

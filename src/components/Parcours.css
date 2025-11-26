@@ -125,7 +125,7 @@
 }
 
 .status-badge {
-  background: var(--primary-color);
+  background: #10b981;
   color: white;
   padding: 0.35rem 1rem;
   border-radius: 0.5rem;
@@ -253,9 +253,9 @@
 }
 
 .experience-content:hover {
-  border-color: #6366f1;
+  border-color: var(--primary-color);
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 40px rgba(249, 115, 22, 0.3);
 }
 
 /* Point sur la timeline */
@@ -266,9 +266,9 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #6366f1;
+  background: var(--primary-color);
   border: 4px solid var(--dark-bg);
-  box-shadow: 0 0 0 2px #6366f1;
+  box-shadow: 0 0 0 2px var(--primary-color);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -279,7 +279,7 @@
 
 .experience-year {
   display: inline-block;
-  background: #6366f1;
+  background: var(--primary-color);
   color: white;
   padding: 0.35rem 1rem;
   border-radius: 0.5rem;
@@ -302,7 +302,7 @@
   gap: 0.75rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #6366f1;
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
 }
 
@@ -329,7 +329,7 @@
 
 .experience-location svg {
   font-size: 0.9rem;
-  color: #6366f1;
+  color: var(--primary-color);
 }
 
 .experience-description {
@@ -338,6 +338,230 @@
   line-height: 1.7;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.btn-details-experience {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+.btn-details-experience:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.experience-item.left .btn-details-experience {
+  float: right;
+}
+
+/* Modal Expérience */
+.experience-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.experience-modal-content {
+  background: var(--light-bg);
+  border-radius: 1rem;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.experience-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.experience-modal-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(90deg);
+}
+
+.experience-modal-header {
+  padding: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.experience-modal-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.experience-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.modal-periode,
+.modal-entreprise,
+.modal-lieu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-modal-body {
+  padding: 2.5rem;
+}
+
+.modal-description-complete {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.modal-images-section {
+  margin-bottom: 2.5rem;
+}
+
+.modal-images-section h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.modal-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 2px solid var(--border-color);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.modal-image:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+}
+
+.modal-realisations-section {
+  margin-bottom: 2.5rem;
+}
+
+.modal-realisations-section h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.modal-realisations-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-realisations-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding: 0.75rem;
+  background: var(--dark-bg);
+  border-radius: 0.5rem;
+  border-left: 3px solid var(--primary-color);
+}
+
+.modal-realisations-list li svg {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.modal-technologies-section {
+  margin-bottom: 1rem;
+}
+
+.modal-technologies-section h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.modal-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.modal-tech-tag {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+  transition: var(--transition);
+}
+
+.modal-tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
 }
 
 .experience-tasks {
@@ -361,7 +585,7 @@
 }
 
 .task-item svg {
-  color: #6366f1;
+  color: var(--primary-color);
   font-size: 0.85rem;
   flex-shrink: 0;
 }
@@ -399,6 +623,53 @@
 
   .timeline-dot {
     left: 20px;
+  }
+
+  .experience-modal-overlay {
+    padding: 1rem;
+  }
+
+  .experience-modal-content {
+    max-height: 95vh;
+  }
+
+  .experience-modal-header {
+    padding: 2rem 1.5rem;
+  }
+
+  .experience-modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .experience-modal-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .experience-modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-image {
+    height: 200px;
+  }
+
+  .modal-realisations-section h3,
+  .modal-technologies-section h3,
+  .modal-images-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .experience-modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
   }
 }
 
@@ -447,11 +718,18 @@
   font-size: 1.5rem;
 }
 
+.certification-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
 .certification-content h4 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin: 0;
   line-height: 1.4;
 }
 
@@ -459,6 +737,28 @@
   color: var(--primary-color);
   font-size: 0.9rem;
   font-weight: 600;
+  display: block;
+}
+
+.btn-certification {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  width: fit-content;
+  margin-top: 0.25rem;
+}
+
+.btn-certification:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
 }
 
 /* Responsive */

@@ -1,39 +1,49 @@
-import { FaGraduationCap, FaBriefcase, FaCertificate } from 'react-icons/fa'
+import { FaGraduationCap, FaBriefcase, FaCertificate, FaMapMarkerAlt, FaCalendar, FaCheckCircle, FaMobileAlt, FaLaptopCode } from 'react-icons/fa'
 import './Parcours.css'
 
 const Parcours = () => {
   const formations = [
     {
       id: 1,
-      periode: '2021 - 2026',
-      statut: 'En cours',
-      titre: 'Ingénieur en Big Data et IA',
-      etablissement: 'EIGSI - École d\'Ingénieurs en Génie des Systèmes Industriels',
-      lieu: 'Casablanca, Maroc'
+      periodeDetail: 'Septembre 2021 - Présent',
+      titre: 'Diplôme d\'Ingénieur en Data Science, Big Data et IA',
+      etablissement: 'EIGSI Casablanca',
+      lieu: 'Casablanca, Maroc',
+      description: 'Formation d\'ingénieur en Data Science, Big Data et Intelligence Artificielle, couvrant les aspects théoriques et pratiques des technologies avancées.',
+      modules: [
+        'Machine Learning & Deep Learning',
+        'Big Data & Cloud Computing',
+        'Intelligence Artificielle & Traitement du Langage Naturel',
+        'Computer Vision & Image/Video Processing'
+      ],
+      statut: 'En cours'
     },
     {
       id: 2,
-      periode: '2020 - 2021',
-      titre: 'Baccalauréat Scientifique - Série D - Math & SVT',
+      periodeDetail: 'Octobre 2020 - Juin 2021',
+      titre: 'Baccalauréat Scientifique - Série D (Math & SVT)',
       etablissement: 'Lycée Calasanz',
-      lieu: 'Libreville, Gabon'
+      lieu: 'Libreville, Gabon',
+      description: 'Baccalauréat scientifique option Mathématiques et Sciences de la Vie et de la Terre.'
     }
   ]
 
   const experiences = [
     {
       id: 1,
-      periode: '23/06/2025 - 12/09/2025',
-      titre: 'STAGE DEVELOPPEMENT MOBILE & ANALYTICS',
+      periode: 'Été 2025',
+      titre: 'Stage Développement Mobile & Analytics',
       entreprise: 'Chambre de Commerce de Casablanca-Settat',
-      description: 'Mission : Développement d\'une application mobile de gestion et suivi des livres avec tableau de bord interactif pour la bibliothèque de la Chambre.'
+      lieu: 'Casablanca, Maroc',
+      description: 'Réalisation d\'une application mobile pour la gestion documentaire de l\'institution'
     },
     {
       id: 2,
-      periode: '01/07/2024 - 05/08/2024',
-      titre: 'STAGE DEVELOPPEMENT WEB',
+      periode: 'Été 2024',
+      titre: 'Stage Développement Web',
       entreprise: 'Texefa SARL',
-      description: 'Mission : Réalisation d\'un site web d\'organisation de conférences internationales en télétravail.'
+      lieu: 'Télétravail',
+      description: 'Réalisation d\'un site web d\'organisation de conférences internationales'
     }
   ]
 
@@ -55,60 +65,112 @@ const Parcours = () => {
       <div className="container">
         <h2 className="section-title">Parcours</h2>
 
-        {/* Formation */}
-        <div className="parcours-section">
-          <div className="parcours-header">
-            <FaGraduationCap className="parcours-icon" />
-            <h3>Formation</h3>
+        {/* FORMATIONS */}
+        <div className="parcours-category">
+          <div className="category-title-wrapper">
+            <FaGraduationCap className="category-icon" />
+            <h3 className="category-title">Mon Parcours Académique</h3>
           </div>
-          <div className="timeline">
-            {formations.map((formation) => (
-              <div key={formation.id} className="timeline-item">
-                <div className="timeline-marker"></div>
-                <div className="timeline-content">
-                  <div className="timeline-header">
-                    <span className="timeline-periode">{formation.periode}</span>
+
+          <div className="academic-timeline">
+            {formations.map((formation, index) => (
+              <div key={formation.id} className="academic-item">
+                <div className="academic-date">
+                  <div className="date-circle">
+                    <FaCalendar />
+                  </div>
+                  <div className="date-text">
+                    <span className="date-main">{formation.periodeDetail}</span>
+                  </div>
+                </div>
+
+                <div className="academic-content">
+                  <div className="academic-header">
+                    <h4 className="academic-title">{formation.titre}</h4>
                     {formation.statut && (
-                      <span className="timeline-statut">{formation.statut}</span>
+                      <span className="status-badge">{formation.statut}</span>
                     )}
                   </div>
-                  <h4 className="timeline-titre">{formation.titre}</h4>
-                  <p className="timeline-etablissement">{formation.etablissement}</p>
-                  <p className="timeline-lieu">{formation.lieu}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Expériences */}
-        <div className="parcours-section">
-          <div className="parcours-header">
-            <FaBriefcase className="parcours-icon" />
-            <h3>Expériences</h3>
-          </div>
-          <div className="timeline">
-            {experiences.map((experience) => (
-              <div key={experience.id} className="timeline-item">
-                <div className="timeline-marker"></div>
-                <div className="timeline-content">
-                  <div className="timeline-header">
-                    <span className="timeline-periode">{experience.periode}</span>
+                  <div className="academic-school">
+                    <FaGraduationCap />
+                    <span>{formation.etablissement}</span>
                   </div>
-                  <h4 className="timeline-titre">{experience.titre}</h4>
-                  <p className="timeline-etablissement">{experience.entreprise}</p>
-                  <p className="timeline-description">{experience.description}</p>
+
+                  <div className="academic-location">
+                    <FaMapMarkerAlt />
+                    <span>{formation.lieu}</span>
+                  </div>
+
+                  <p className="academic-description">{formation.description}</p>
+
+                  {formation.modules && (
+                    <div className="academic-modules">
+                      {formation.modules.map((module, idx) => (
+                        <div key={idx} className="module-item">
+                          <FaCheckCircle />
+                          <span>{module}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Certifications */}
-        <div className="parcours-section">
-          <div className="parcours-header">
-            <FaCertificate className="parcours-icon" />
-            <h3>Certifications</h3>
+        {/* EXPÉRIENCES PROFESSIONNELLES */}
+        <div className="parcours-category">
+          <div className="category-title-wrapper">
+            <FaBriefcase className="category-icon" />
+            <h3 className="category-title">Expériences Professionnelles</h3>
+          </div>
+
+          <div className="experience-timeline">
+            {experiences.map((exp, index) => (
+              <div key={exp.id} className={`experience-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+                <div className="experience-content">
+                  <div className="experience-year">{exp.periode}</div>
+                  <h4 className="experience-title">{exp.titre}</h4>
+
+                  <div className="experience-company">
+                    <FaBriefcase />
+                    <span>{exp.entreprise}</span>
+                  </div>
+
+                  <div className="experience-location">
+                    <FaMapMarkerAlt />
+                    <span>{exp.lieu}</span>
+                  </div>
+
+                  <p className="experience-description">{exp.description}</p>
+
+                  {exp.realisations && (
+                    <div className="experience-tasks">
+                      {exp.realisations.map((real, idx) => (
+                        <div key={idx} className="task-item">
+                          <FaCheckCircle />
+                          <span>{real}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="timeline-dot">
+                  {exp.id === 1 ? <FaMobileAlt /> : <FaLaptopCode />}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CERTIFICATIONS */}
+        <div className="certifications-section">
+          <div className="category-title-wrapper">
+            <FaCertificate className="category-icon" />
+            <h3 className="category-title">Certifications</h3>
           </div>
           <div className="certifications-grid">
             {certifications.map((certification) => (

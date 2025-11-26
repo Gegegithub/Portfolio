@@ -7,6 +7,9 @@
   padding-top: 80px;
   position: relative;
   background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  overflow: hidden;
 }
 
 .hero::before {
@@ -23,6 +26,27 @@
   ),
   radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
   pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(249, 115, 22, 0.15),
+    transparent 40%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero:hover::after {
+  opacity: 1;
 }
 
 .hero-content {
@@ -51,6 +75,13 @@
   font-weight: 700;
   color: var(--primary-color);
   animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.role {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  animation: fadeInUp 1s ease-out 0.5s both;
 }
 
 .hero-subtitle {
@@ -121,6 +152,10 @@
     font-size: 2.5rem;
   }
 
+  .role {
+    font-size: 1.3rem;
+  }
+
   .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
@@ -142,6 +177,10 @@
 @media (max-width: 480px) {
   .name {
     font-size: 2rem;
+  }
+
+  .role {
+    font-size: 1.1rem;
   }
 
   .hero-subtitle {

@@ -5,6 +5,7 @@ import {
   FaMobileAlt,
   FaCloud,
   FaTools,
+  FaChartBar,
 } from 'react-icons/fa'
 import {
   SiPython,
@@ -33,6 +34,8 @@ import {
   SiDocker,
   SiLinux,
   SiVmware,
+  SiPowerbi,
+  SiGrafana,
 } from 'react-icons/si'
 import { TbChartHistogram, TbBrain } from 'react-icons/tb'
 import './About.css'
@@ -88,6 +91,11 @@ const About = () => {
     systemsVirtualization: [
       { icon: <SiLinux />, name: 'Linux (Ubuntu)', color: '#FCC624' },
       { icon: <SiVmware />, name: 'VMware', color: '#607078' },
+    ],
+    dataVisualization: [
+      { icon: <SiPowerbi />, name: 'Power BI', color: '#F2C811' },
+      { icon: <SiGrafana />, name: 'Grafana', color: '#F46800' },
+      { icon: <FaChartBar />, name: 'Superset', color: '#20A6C9' },
     ],
   }
 
@@ -247,6 +255,21 @@ const About = () => {
               </div>
               <div className="tech-stack-modern">
                 {techStacks.systemsVirtualization.map((tech, index) => (
+                  <div key={index} className="tech-badge" style={{ '--tech-color': tech.color }}>
+                    {tech.icon}
+                    <span>{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="tech-category-card">
+              <div className="category-header">
+                <FaChartBar className="category-icon" />
+                <h4>Visualisation de données</h4>
+              </div>
+              <div className="tech-stack-modern">
+                {techStacks.dataVisualization.map((tech, index) => (
                   <div key={index} className="tech-badge" style={{ '--tech-color': tech.color }}>
                     {tech.icon}
                     <span>{tech.name}</span>

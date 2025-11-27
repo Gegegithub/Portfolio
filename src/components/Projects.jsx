@@ -9,6 +9,44 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      category: 'IA / Machine Learning',
+      date: 'Novembre 2025',
+      title: 'Détection de Fraude Bancaire avec ML',
+      shortDescription: 'Modèle de Machine Learning pour détecter les transactions frauduleuses avec un dataset déséquilibré',
+      fullDescription: `Projet de Machine Learning visant à détecter automatiquement les fraudes bancaires à partir d'un dataset de transactions. Le défi principal : gérer un dataset fortement déséquilibré où les fraudes représentent moins de 1% des transactions.
+
+L'objectif : développer un modèle capable de distinguer les transactions légitimes des transactions frauduleuses en maximisant la détection des fraudes (Recall) tout en limitant les faux positifs.`,
+      architecture: [
+        'Analyse exploratoire des données (EDA) avec Pandas',
+        'Gestion du déséquilibre avec SMOTE',
+        'Feature engineering : variables temporelles et agrégations',
+        'Comparaison de modèles : Random Forest vs XGBoost',
+        'Optimisation des hyperparamètres avec GridSearchCV',
+        'Évaluation avec métriques adaptées (Precision, Recall, F1-Score, AUC-ROC)'
+      ],
+      aiIntegration: `Approche Machine Learning supervisée pour la classification binaire :
+
+- **Dataset déséquilibré** : ~0.17% de fraudes → nécessite SMOTE pour rééquilibrer
+- **Feature engineering** : création de variables dérivées (montants moyens, fréquence de transactions, ratios)
+- **Comparaison de modèles** : Random Forest et XGBoost
+- **Optimisation** : GridSearchCV pour trouver les meilleurs hyperparamètres
+- **Métriques** : Focus sur le Recall (détecter le maximum de fraudes) et l'AUC-ROC
+
+Le modèle final atteint un bon compromis entre détection des fraudes et limitation des faux positifs.`,
+      achievements: [
+        'Analyser un dataset déséquilibré de transactions bancaires',
+        'Appliquer SMOTE pour gérer le déséquilibre des classes',
+        'Créer des features pertinentes avec Pandas',
+        'Comparer Random Forest et XGBoost',
+        'Optimiser les hyperparamètres avec GridSearchCV',
+        'Évaluer les performances avec Precision, Recall, F1-Score et AUC-ROC',
+        'Interpréter la matrice de confusion et courbe ROC'
+      ],
+      technologies: ['Python', 'Pandas', 'Scikit-learn', 'XGBoost', 'SMOTE'],
+      color: '#ef4444'
+    },
+    {
+      id: 2,
       category: 'IA / NLP',
       date: 'Novembre 2025',
       title: 'Chatbot Personnalisé avec Fine-tuning',
@@ -24,7 +62,7 @@ const Projects = () => {
       color: '#ec4899'
     },
     {
-      id: 2,
+      id: 3,
       category: 'IA / Deep Learning',
       date: 'Novembre 2025',
       title: 'Segmentation d\'Images de Cuir',
@@ -44,7 +82,7 @@ J'ai utilisé l'architecture U-Net, particulièrement adaptée pour la segmentat
       color: '#8b5cf6'
     },
     {
-      id: 3,
+      id: 4,
       category: 'IA / Deep Learning',
       date: 'Octobre 2025',
       title: 'Détection de Tumeurs Cérébrales par Deep Learning',
@@ -74,7 +112,7 @@ Pour le suivi et la sauvegarde des expériences, j'ai utilisé ClearML, un super
       color: '#8b5cf6'
     },
     {
-      id: 4,
+      id: 5,
       category: 'Big Data',
       date: 'Juin 2025',
       title: 'Pipeline de Maintenance Prédictive',
@@ -105,7 +143,7 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
       color: '#0ea5e9'
     },
     {
-      id: 5,
+      id: 6,
       category: 'IA / Computer Vision',
       date: 'Mai 2024',
       title: 'Gestion d\'Objets avec IA',
@@ -128,7 +166,7 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
       color: '#f59e0b'
     },
     {
-      id: 6,
+      id: 7,
       category: 'Développement Web',
       date: 'Mars 2024',
       title: 'Site Web Django - Plateforme E-commerce',
@@ -148,7 +186,7 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
       color: '#10b981'
     },
     {
-      id: 7,
+      id: 8,
       category: 'Développement Web',
       date: 'Janvier 2024',
       title: 'Site Web Django - Gestion de Bibliothèque',
@@ -186,6 +224,9 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
                 <div className="project-meta">
                   <span className="project-category">{project.category}</span>
                   <span className="project-date">{project.date}</span>
+                  {project.status && (
+                    <span className="project-status-badge">{project.status}</span>
+                  )}
                 </div>
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-short-description">{project.shortDescription}</p>

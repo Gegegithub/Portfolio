@@ -65,6 +65,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .project-category {
@@ -76,6 +78,18 @@
 .project-date {
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.project-status-badge {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
 }
 
 .project-title {

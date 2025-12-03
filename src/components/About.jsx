@@ -38,6 +38,7 @@ import {
   SiGrafana,
 } from 'react-icons/si'
 import { TbChartHistogram, TbBrain } from 'react-icons/tb'
+import { motion } from 'framer-motion'
 import './About.css'
 
 const About = () => {
@@ -102,12 +103,39 @@ const About = () => {
   return (
     <section id="about" className="about">
       <div className="container">
-        <h2 className="section-title">À propos</h2>
-        <div className="about-content">
-          <div className="about-image">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          À propos
+        </motion.h2>
+        <motion.div
+          className="about-content"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="about-image"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+          >
             <img src="photo_cv.jpg" alt="Georges BIRANGOU" className="profile-image" />
-          </div>
-          <div className="about-text">
+          </motion.div>
+          <motion.div
+            className="about-text"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <p className="about-description">
               Actuellement en cycle ingénieur à l'EIGSI Casablanca, je me spécialise en Data Science et Intelligence Artificielle. Je m'intéresse particulièrement aux modèles de Machine Learning et Deep Learning, ainsi qu'aux méthodes de traitement de données à grande échelle.
               Au cours de mon parcours, j'ai eu l'occasion de travailler sur plusieurs projets académiques et personnels qui m'ont permis de renforcer mes compétences.
@@ -119,13 +147,35 @@ const About = () => {
                 <span>Français (Avancé), Anglais (Intermédiaire)</span>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Stack Technologique */}
-        <div className="skills-section">
-          <h3 className="skills-main-title">Stack Technologique</h3>
-          <p className="skills-subtitle">Technologies que j'utilise quotidiennement</p>
+        <motion.div
+          className="skills-section"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.h3
+            className="skills-main-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Stack Technologique
+          </motion.h3>
+          <motion.p
+            className="skills-subtitle"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Technologies que j'utilise quotidiennement
+          </motion.p>
 
           <div className="tech-grid">
             <div className="tech-category-card">
@@ -263,22 +313,35 @@ const About = () => {
               </div>
             </div>
 
-            <div className="tech-category-card">
+            <motion.div
+              className="tech-category-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(249, 115, 22, 0.2)' }}
+            >
               <div className="category-header">
                 <FaChartBar className="category-icon" />
                 <h4>Visualisation de données</h4>
               </div>
               <div className="tech-stack-modern">
                 {techStacks.dataVisualization.map((tech, index) => (
-                  <div key={index} className="tech-badge" style={{ '--tech-color': tech.color }}>
+                  <motion.div
+                    key={index}
+                    className="tech-badge"
+                    style={{ '--tech-color': tech.color }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
                     {tech.icon}
                     <span>{tech.name}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,5 +1,6 @@
 import { FaEye, FaProjectDiagram, FaEnvelope, FaGithub, FaChevronDown } from 'react-icons/fa'
 import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import './Home.css'
 
 const Home = () => {
@@ -33,39 +34,88 @@ const Home = () => {
     }
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100
+      }
+    }
+  }
+
   return (
     <section id="home" className="hero" ref={heroRef}>
       <div className="container">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="hello">Hello World,</span>
-            <span className="name">Je suis Georges BIRANGOU</span>
-            <span className="role">Ingénieur Data & IA</span>
-          </h1>
-          <p className="hero-subtitle">Turning complex data into actionable insights using advanced AI & Deep Learning.</p>
-          <div className="hero-buttons">
-            <a href="/Portfolio/Georges BIRANGOU.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+        <motion.div
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            <motion.span className="hello" variants={itemVariants}>Hello World,</motion.span>
+            <motion.span className="name" variants={itemVariants}>Je suis Georges BIRANGOU</motion.span>
+            <motion.span className="role" variants={itemVariants}>Ingénieur Data & IA</motion.span>
+          </motion.h1>
+          <motion.p className="hero-subtitle" variants={itemVariants}>
+            Turning complex data into actionable insights using advanced AI & Deep Learning.
+          </motion.p>
+          <motion.div className="hero-buttons" variants={itemVariants}>
+            <motion.a
+              href="/Portfolio/Georges BIRANGOU.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(249, 115, 22, 0.5)' }}
+              whileTap={{ scale: 0.95 }}
+            >
               <FaEye /> Voir mon CV
-            </a>
-            <button
+            </motion.a>
+            <motion.button
               className="btn btn-secondary"
               onClick={() => scrollToSection('projects')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FaProjectDiagram /> Mes projets
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               className="btn btn-secondary"
               onClick={() => scrollToSection('contact')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FaEnvelope /> Me contacter
-            </button>
-          </div>
-          <p className="availability-message">Disponible pour un stage PFE (Janvier 2026)</p>
-        </div>
+            </motion.button>
+          </motion.div>
+          <motion.p className="availability-message" variants={itemVariants}>
+            Disponible pour un stage PFE (Janvier 2026)
+          </motion.p>
+        </motion.div>
       </div>
-      <div className="scroll-indicator" onClick={() => scrollToSection('about')}>
+      <motion.div
+        className="scroll-indicator"
+        onClick={() => scrollToSection('about')}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        whileHover={{ scale: 1.2 }}
+      >
         <FaChevronDown />
-      </div>
+      </motion.div>
     </section>
   )
 }

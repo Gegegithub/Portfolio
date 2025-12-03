@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa'
 import emailjs from '@emailjs/browser'
+import { motion } from 'framer-motion'
 import './Contact.css'
 
 const Contact = () => {
@@ -59,19 +60,47 @@ const Contact = () => {
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <h2 className="section-title">Contact</h2>
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Contact
+        </motion.h2>
         <div className="contact-layout">
           {/* Colonne gauche - Boutons de contact */}
-          <div className="contact-info">
+          <motion.div
+            className="contact-info"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h3 className="contact-section-title">Informations de contact</h3>
-            <div className="contact-item">
+            <motion.div
+              className="contact-item"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ x: 10 }}
+            >
               <FaMapMarkerAlt />
               <div>
                 <h4>Localisation</h4>
                 <span>Maroc, Casablanca</span>
               </div>
-            </div>
-            <div className="contact-item">
+            </motion.div>
+            <motion.div
+              className="contact-item"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ x: 10 }}
+            >
               <FaEnvelope />
               <div>
                 <h4>Email</h4>
@@ -83,46 +112,81 @@ const Contact = () => {
                   Ge.birangou.26@eigsica.ma
                 </a>
               </div>
-            </div>
-            <div className="contact-item">
+            </motion.div>
+            <motion.div
+              className="contact-item"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ x: 10 }}
+            >
               <FaPhone />
               <div>
                 <h4>Téléphone</h4>
                 <a href="tel:+212709274190">+212 709 274 190</a>
               </div>
-            </div>
+            </motion.div>
 
             <h3 className="contact-section-title" style={{ marginTop: '2rem' }}>Mes liens</h3>
-            <div className="social-links">
-              <a
+            <motion.div
+              className="social-links"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <motion.a
                 href="https://www.linkedin.com/in/georges-birangou-09ab50356"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <FaLinkedin />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://github.com/gegegithub"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                whileHover={{ scale: 1.2, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <FaGithub />
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-            <div className="qr-code-section">
+            <motion.div
+              className="qr-code-section"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
               <p className="qr-label">Partagez mon portfolio</p>
               <img src="qrcodefolio.png" alt="QR Code Portfolio" className="qr-code" />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Colonne droite - Formulaire */}
-          <div className="contact-form-wrapper">
+          <motion.div
+            className="contact-form-wrapper"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <p className="form-hint">N'hésitez pas à m'écrire ici</p>
             <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-group">
+              <motion.div
+                className="form-group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <label htmlFor="email">Votre Email</label>
                 <input
                   type="email"
@@ -133,8 +197,14 @@ const Contact = () => {
                   required
                   placeholder="votre.email@exemple.com"
                 />
-              </div>
-              <div className="form-group">
+              </motion.div>
+              <motion.div
+                className="form-group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <label htmlFor="subject">Objet</label>
                 <input
                   type="text"
@@ -145,8 +215,14 @@ const Contact = () => {
                   required
                   placeholder="Sujet de votre message"
                 />
-              </div>
-              <div className="form-group">
+              </motion.div>
+              <motion.div
+                className="form-group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
@@ -157,25 +233,45 @@ const Contact = () => {
                   rows="6"
                   placeholder="Votre message..."
                 ></textarea>
-              </div>
+              </motion.div>
 
               {status === 'success' && (
-                <div className="form-status success">
+                <motion.div
+                  className="form-status success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                >
                   ✓ Message envoyé ! Je vous répondrai rapidement !
-                </div>
+                </motion.div>
               )}
 
               {status === 'error' && (
-                <div className="form-status error">
+                <motion.div
+                  className="form-status error"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                >
                   ✗ Erreur lors de l'envoi. Veuillez réessayer.
-                </div>
+                </motion.div>
               )}
 
-              <button type="submit" className="btn-submit" disabled={sending}>
+              <motion.button
+                type="submit"
+                className="btn-submit"
+                disabled={sending}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
                 <FaEnvelope /> {sending ? 'Envoi en cours...' : 'Envoyer'}
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

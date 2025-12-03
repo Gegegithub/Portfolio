@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FaGraduationCap, FaBriefcase, FaCertificate, FaMapMarkerAlt, FaCalendar, FaCheckCircle, FaMobileAlt, FaLaptopCode, FaTimes, FaExternalLinkAlt } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
 import './Parcours.css'
 
 const Parcours = () => {
@@ -105,18 +106,39 @@ const Parcours = () => {
   return (
     <section id="parcours" className="parcours">
       <div className="container">
-        <h2 className="section-title">Parcours</h2>
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Parcours
+        </motion.h2>
 
         {/* FORMATIONS */}
         <div className="parcours-category">
-          <div className="category-title-wrapper">
+          <motion.div
+            className="category-title-wrapper"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <FaGraduationCap className="category-icon" />
             <h3 className="category-title">Mon Parcours Académique</h3>
-          </div>
+          </motion.div>
 
           <div className="academic-timeline">
             {formations.map((formation, index) => (
-              <div key={formation.id} className="academic-item">
+              <motion.div
+                key={formation.id}
+                className="academic-item"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
                 <div className="academic-date">
                   <div className="date-circle">
                     <FaCalendar />
@@ -157,22 +179,38 @@ const Parcours = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* EXPÉRIENCES PROFESSIONNELLES */}
         <div className="parcours-category">
-          <div className="category-title-wrapper">
+          <motion.div
+            className="category-title-wrapper"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <FaBriefcase className="category-icon" />
             <h3 className="category-title">Expériences Professionnelles</h3>
-          </div>
+          </motion.div>
 
           <div className="experience-timeline">
             {experiences.map((exp, index) => (
-              <div key={exp.id} className={`experience-item ${index % 2 === 0 ? 'left' : 'right'}`}>
-                <div className="experience-content">
+              <motion.div
+                key={exp.id}
+                className={`experience-item ${index % 2 === 0 ? 'left' : 'right'}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: index * 0.2 }}
+              >
+                <motion.div
+                  className="experience-content"
+                  whileHover={{ scale: 1.03, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)' }}
+                >
                   <div className="experience-year">{exp.periode}</div>
                   <h4 className="experience-title">{exp.titre}</h4>
 
@@ -188,29 +226,51 @@ const Parcours = () => {
 
                   <p className="experience-description">{exp.description}</p>
 
-                  <button
+                  <motion.button
                     className="btn-details-experience"
                     onClick={() => openModal(exp)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Voir les détails
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
 
                 <div className="timeline-dot">
                   {exp.id === 1 ? <FaMobileAlt /> : <FaLaptopCode />}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* MODALE DÉTAILS EXPÉRIENCE */}
-        {selectedExperience && (
-          <div className="experience-modal-overlay" onClick={closeModal}>
-            <div className="experience-modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="experience-modal-close" onClick={closeModal}>
-                <FaTimes />
-              </button>
+        <AnimatePresence>
+          {selectedExperience && (
+            <motion.div
+              className="experience-modal-overlay"
+              onClick={closeModal}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="experience-modal-content"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.8, opacity: 0, y: 50 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              >
+                <motion.button
+                  className="experience-modal-close"
+                  onClick={closeModal}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <FaTimes />
+                </motion.button>
 
               <div className="experience-modal-header">
                 <h2>{selectedExperience.titre}</h2>
@@ -265,35 +325,52 @@ const Parcours = () => {
                   </div>
                 )}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
+        </AnimatePresence>
 
         {/* CERTIFICATIONS */}
         <div className="certifications-section">
-          <div className="category-title-wrapper">
+          <motion.div
+            className="category-title-wrapper"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <FaCertificate className="category-icon" />
             <h3 className="category-title">Certifications</h3>
-          </div>
+          </motion.div>
           <div className="certifications-grid">
-            {certifications.map((certification) => (
-              <div key={certification.id} className="certification-card">
+            {certifications.map((certification, index) => (
+              <motion.div
+                key={certification.id}
+                className="certification-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+              >
                 <div className="certification-icon">
                   <FaCertificate />
                 </div>
                 <div className="certification-content">
                   <h4>{certification.titre}</h4>
                   <span className="certification-annee">{certification.annee}</span>
-                  <a
+                  <motion.a
                     href={certification.lien}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-certification"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <FaExternalLinkAlt /> Voir la certification
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaPython, FaRobot, FaBrain, FaTelegram, FaGithub } from 'react-icons/fa'
 import { SiDjango, SiPostgresql, SiApachekafka, SiApachespark } from 'react-icons/si'
+import { motion, AnimatePresence } from 'framer-motion'
 import './Projects.css'
 
 const Projects = () => {
@@ -216,10 +217,26 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2 className="section-title">Projets</h2>
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Projets
+        </motion.h2>
         <div className="projects-grid">
-          {projects.map((project) => (
-            <div key={project.id} className="project-card-modern">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="project-card-modern"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10, boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)' }}
+            >
               <div className="project-card-body">
                 <div className="project-meta">
                   <span className="project-category">{project.category}</span>
@@ -232,88 +249,122 @@ Les prédictions sont visibles dans Grafana pour aider un opérateur humain à a
                 <p className="project-short-description">{project.shortDescription}</p>
                 <div className="project-tech-tags">
                   {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-badge">{tech}</span>
+                    <motion.span
+                      key={index}
+                      className="tech-badge"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      {tech}
+                    </motion.span>
                   ))}
                 </div>
-                <button
+                <motion.button
                   className="btn-details"
                   onClick={() => openModal(project)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Voir les détails
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Modal */}
-      {selectedProject && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>&times;</button>
-            <div className="modal-header" style={{ background: selectedProject.color }}>
-              <h2>{selectedProject.title}</h2>
-              <div className="modal-meta">
-                <span>{selectedProject.category}</span>
-                <span>{selectedProject.date}</span>
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="modal-overlay"
+            onClick={closeModal}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            >
+              <motion.button
+                className="modal-close"
+                onClick={closeModal}
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                &times;
+              </motion.button>
+              <div className="modal-header" style={{ background: selectedProject.color }}>
+                <h2>{selectedProject.title}</h2>
+                <div className="modal-meta">
+                  <span>{selectedProject.category}</span>
+                  <span>{selectedProject.date}</span>
+                </div>
               </div>
-            </div>
-            <div className="modal-body">
-              <p className="modal-description">{selectedProject.fullDescription}</p>
+              <div className="modal-body">
+                <p className="modal-description">{selectedProject.fullDescription}</p>
 
-              {selectedProject.architecture && (
+                {selectedProject.architecture && (
+                  <div className="modal-section">
+                    <h3>Architecture mise en œuvre</h3>
+                    <ul>
+                      {selectedProject.architecture.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedProject.aiIntegration && (
+                  <div className="modal-section">
+                    <h3>Intégration IA — prédiction intelligente</h3>
+                    <p>{selectedProject.aiIntegration}</p>
+                  </div>
+                )}
+
                 <div className="modal-section">
-                  <h3>Architecture mise en œuvre</h3>
+                  <h3>Ce projet m'a permis de</h3>
                   <ul>
-                    {selectedProject.architecture.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {selectedProject.achievements.map((achievement, index) => (
+                      <li key={index}>{achievement}</li>
                     ))}
                   </ul>
                 </div>
-              )}
 
-              {selectedProject.aiIntegration && (
-                <div className="modal-section">
-                  <h3>Intégration IA — prédiction intelligente</h3>
-                  <p>{selectedProject.aiIntegration}</p>
+                <div className="modal-technologies">
+                  <h3>Technologies utilisées</h3>
+                  <div className="tech-list">
+                    {selectedProject.technologies.map((tech, index) => (
+                      <span key={index} className="tech-badge-large">{tech}</span>
+                    ))}
+                  </div>
                 </div>
-              )}
 
-              <div className="modal-section">
-                <h3>Ce projet m'a permis de</h3>
-                <ul>
-                  {selectedProject.achievements.map((achievement, index) => (
-                    <li key={index}>{achievement}</li>
-                  ))}
-                </ul>
+                {selectedProject.githubUrl && (
+                  <div className="modal-github">
+                    <motion.a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="github-link"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaGithub /> Voir un aperçu sur GitHub
+                    </motion.a>
+                  </div>
+                )}
               </div>
-
-              <div className="modal-technologies">
-                <h3>Technologies utilisées</h3>
-                <div className="tech-list">
-                  {selectedProject.technologies.map((tech, index) => (
-                    <span key={index} className="tech-badge-large">{tech}</span>
-                  ))}
-                </div>
-              </div>
-
-              {selectedProject.githubUrl && (
-                <div className="modal-github">
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="github-link"
-                  >
-                    <FaGithub /> Voir un aperçu sur GitHub
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

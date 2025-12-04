@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   padding-top: 80px;
   position: relative;
@@ -12,6 +12,7 @@
   overflow: hidden;
 }
 
+/* Halos de couleur animés */
 .hero::before {
   content: '';
   position: absolute;
@@ -19,15 +20,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    circle at 20% 50%,
-    rgba(99, 102, 241, 0.1) 0%,
-    transparent 50%
-  ),
-  radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  background:
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 60% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 10% 90%, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
   pointer-events: none;
+  z-index: 0;
+  animation: pulseGlow 8s ease-in-out infinite;
 }
 
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Particules flottantes avec effet souris */
 .hero::after {
   content: '';
   position: absolute;
@@ -35,81 +47,212 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(249, 115, 22, 0.15),
-    transparent 40%
-  );
+  background:
+    radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(249, 115, 22, 0.15), transparent 40%),
+    radial-gradient(circle at 15% 25%, rgba(249, 115, 22, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 45% 65%, rgba(139, 92, 246, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 25% 85%, rgba(236, 72, 153, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 75% 45%, rgba(34, 211, 238, 0.1) 2px, transparent 2px);
+  background-size: 100% 100%, 800px 800px, 800px 800px, 800px 800px, 800px 800px, 800px 800px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
+  animation: floatParticles 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes floatParticles {
+  0%, 100% {
+    background-position: 0% 0%, 0% 0%, 100% 100%, 50% 50%, 75% 25%, 25% 75%;
+  }
+  50% {
+    background-position: 0% 0%, 10% 10%, 90% 90%, 60% 40%, 85% 15%, 15% 85%;
+  }
 }
 
 .hero:hover::after {
   opacity: 1;
 }
 
+/* Courbes ondulées à gauche - Style Abdullah */
+.wavy-line-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.wavy-line-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 200px 150px at 0% 20%, rgba(139, 92, 246, 0.2), transparent),
+    radial-gradient(ellipse 250px 200px at -10% 60%, rgba(99, 102, 241, 0.15), transparent);
+  clip-path: path('M 0 0 Q 150 100, 0 200 Q 180 350, 0 500 Q 150 650, 0 800 Q 200 950, 0 1100 L 0 0 Z');
+  animation: waveLeft 6s ease-in-out infinite;
+}
+
+@keyframes waveLeft {
+  0%, 100% {
+    transform: translateX(-20px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(10px);
+    opacity: 0.8;
+  }
+}
+
+/* Courbes ondulées à droite - Style Abdullah */
+.wavy-line-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.wavy-line-right::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 200px 150px at 100% 30%, rgba(249, 115, 22, 0.2), transparent),
+    radial-gradient(ellipse 250px 200px at 110% 70%, rgba(236, 72, 153, 0.15), transparent);
+  clip-path: path('M 250 0 Q 150 150, 250 300 Q 120 450, 250 600 Q 150 750, 250 900 Q 100 1050, 250 1200 L 250 0 Z');
+  animation: waveRight 6s ease-in-out infinite;
+}
+
+@keyframes waveRight {
+  0%, 100% {
+    transform: translateX(20px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-10px);
+    opacity: 0.8;
+  }
+}
+
+/* Conteneur pour le modèle 3D (en arrière-plan) */
+.hero-3d-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  opacity: 0.8;
+}
+
+/* Conteneur pour le texte (par-dessus) */
+.hero-text-container {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem 3rem;
+  margin-left: 6rem;
+  text-align: left;
+  pointer-events: auto;
+}
+
 .hero-content {
-  text-align: center;
+  text-align: left;
   animation: fadeInUp 1s ease-out;
   position: relative;
-  z-index: 1;
+  width: 100%;
 }
 
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.3rem;
+  margin-bottom: 2rem;
 }
 
 .hello {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #f97316;
   animation: fadeInUp 1s ease-out 0.2s both;
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.8),
+    0 2px 15px rgba(0, 0, 0, 0.7),
+    0 4px 25px rgba(0, 0, 0, 0.6);
 }
 
 .name {
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 700;
-  color: var(--primary-color);
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: fadeInUp 1s ease-out 0.4s both;
-}
-
-.role {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  animation: fadeInUp 1s ease-out 0.5s both;
+  margin-top: 0.5rem;
+  line-height: 1.1;
+  filter:
+    drop-shadow(0 0 10px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 20px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 2px 15px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 4px 25px rgba(0, 0, 0, 0.6));
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  margin-bottom: 3rem;
+  font-size: 1.4rem;
+  color: #c0c0c0;
+  margin-bottom: 2.5rem;
+  margin-top: 1.5rem;
   animation: fadeInUp 1s ease-out 0.6s both;
-  font-style: italic;
+  line-height: 1.7;
+  font-weight: 300;
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.8),
+    0 2px 15px rgba(0, 0, 0, 0.7);
 }
 
 .hero-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
   animation: fadeInUp 1s ease-out 0.8s both;
+  max-width: 250px;
+}
+
+.hero-buttons .btn {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
 }
 
 .availability-message {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 1rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  font-size: 0.95rem;
   font-weight: 400;
   color: var(--text-secondary);
   animation: fadeInUp 1s ease-out 1s both;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
 }
 
@@ -139,51 +282,96 @@
   transform: translateX(-50%) scale(1.1);
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 968px) {
   .hero {
     padding-top: 100px;
   }
 
+  /* Cacher le modèle 3D sur tablette/mobile */
+  .hero-3d-container {
+    display: none;
+  }
+
+  /* Réduire les lignes ondulées */
+  .wavy-line-left,
+  .wavy-line-right {
+    width: 150px;
+    opacity: 0.3;
+  }
+
+  .hero-text-container {
+    max-width: 90%;
+    padding: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
   .hello {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    margin: 0 auto;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .availability-message {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Cacher complètement les lignes ondulées sur petit mobile */
+  .wavy-line-left,
+  .wavy-line-right {
+    display: none;
+  }
+
+  .hero-text-container {
+    padding: 1.5rem;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hello {
+    font-size: 1.5rem;
   }
 
   .name {
     font-size: 2.5rem;
   }
 
-  .role {
-    font-size: 1.3rem;
-  }
-
   .hero-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
   }
 
   .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 100%;
   }
 
   .hero-buttons .btn {
     width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .name {
-    font-size: 2rem;
   }
 
-  .role {
-    font-size: 1.1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
+  .availability-message {
+    font-size: 0.9rem;
   }
 }

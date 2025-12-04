@@ -120,7 +120,7 @@ section {
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
-  box-shadow: 0 4px 15px var(--glow-color);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.6), 0 0 30px rgba(249, 115, 22, 0.3);
 }
 
 .btn-primary::before {
@@ -140,7 +140,7 @@ section {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px var(--glow-color);
+  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.7), 0 0 40px rgba(249, 115, 22, 0.4);
 }
 
 .btn-secondary {

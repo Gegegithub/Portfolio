@@ -1,7 +1,28 @@
-import { FaEye, FaProjectDiagram, FaEnvelope, FaGithub, FaChevronDown } from 'react-icons/fa'
-import { useEffect, useRef } from 'react'
+import { FaEye, FaProjectDiagram, FaChevronDown } from 'react-icons/fa'
+import { useEffect, useRef, Suspense } from 'react'
 import { motion } from 'framer-motion'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useGLTF, OrbitControls } from '@react-three/drei'
 import './Home.css'
+
+// Composant pour charger le modèle 3D
+const GamingPC = () => {
+  const { scene } = useGLTF('/Portfolio/3dmodel/personal_computer.glb')
+  const modelRef = useRef()
+
+  // Rotation automatique lente
+  useFrame(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.002 // Vitesse de rotation (plus petit = plus lent)
+    }
+  })
+
+  // scale: contrôle la taille (plus petit = plus petit modèle)
+  // position: [gauche/droite (X), haut/bas (Y), avant/arrière (Z)]
+  // rotation initiale: [0°, -110°, 0°] convertie en radians
+  const rotationInRadians = [0, -110, 0].map(deg => (deg * Math.PI) / 180)
+  return <primitive ref={modelRef} object={scene} scale={6} position={[5, -11, -3]} rotation={rotationInRadians} />
+}
 
 const Home = () => {
   const heroRef = useRef(null)
@@ -59,7 +80,32 @@ const Home = () => {
 
   return (
     <section id="home" className="hero" ref={heroRef}>
-      <div className="container">
+      {/* Lignes ondulées */}
+      <div className="wavy-line-left"></div>
+      <div className="wavy-line-right"></div>
+
+      {/* Modèle 3D en arrière-plan */}
+      <div className="hero-3d-container">
+        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.5} />
+            <spotLight position={[10, 10, 10]} angle={0.3} penumbra={1} intensity={1} />
+            <pointLight position={[-8, 3, -5]} intensity={0.4} />
+            <directionalLight position={[5, 5, 5]} intensity={0.6} />
+            <GamingPC />
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              target={[5, -8.5, -3]}
+              minPolarAngle={Math.PI / 2}
+              maxPolarAngle={Math.PI / 2}
+            />
+          </Suspense>
+        </Canvas>
+      </div>
+
+      {/* Contenu texte en arrière-plan (à gauche) */}
+      <div className="hero-text-container">
         <motion.div
           className="hero-content"
           variants={containerVariants}
@@ -69,10 +115,9 @@ const Home = () => {
           <motion.h1 className="hero-title" variants={itemVariants}>
             <motion.span className="hello" variants={itemVariants}>Hello World,</motion.span>
             <motion.span className="name" variants={itemVariants}>Je suis Georges BIRANGOU</motion.span>
-            <motion.span className="role" variants={itemVariants}>Ingénieur Data & IA</motion.span>
           </motion.h1>
           <motion.p className="hero-subtitle" variants={itemVariants}>
-            Turning complex data into actionable insights using advanced AI & Deep Learning.
+            Je transforme des données complexes en informations exploitables grâce au Machine Learning et au Deep Learning.
           </motion.p>
           <motion.div className="hero-buttons" variants={itemVariants}>
             <motion.a
@@ -93,20 +138,13 @@ const Home = () => {
             >
               <FaProjectDiagram /> Mes projets
             </motion.button>
-            <motion.button
-              className="btn btn-secondary"
-              onClick={() => scrollToSection('contact')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaEnvelope /> Me contacter
-            </motion.button>
           </motion.div>
           <motion.p className="availability-message" variants={itemVariants}>
             Disponible pour un stage PFE (Janvier 2026)
           </motion.p>
         </motion.div>
       </div>
+
       <motion.div
         className="scroll-indicator"
         onClick={() => scrollToSection('about')}

@@ -102,6 +102,8 @@ const About = () => {
 
   return (
     <section id="about" className="about">
+      <div className="wavy-line-left"></div>
+      <div className="wavy-line-right"></div>
       <div className="container">
         <motion.h2
           className="section-title"

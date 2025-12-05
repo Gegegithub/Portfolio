@@ -1,6 +1,82 @@
 .about {
   background: var(--dark-bg);
   padding-top: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lignes ondulées animées - gauche */
+.about .wavy-line-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.about .wavy-line-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 200px 150px at 0% 20%, rgba(139, 92, 246, 0.2), transparent),
+    radial-gradient(ellipse 250px 200px at -10% 60%, rgba(99, 102, 241, 0.15), transparent);
+  clip-path: path('M 0 0 Q 150 100, 0 200 Q 180 350, 0 500 Q 150 650, 0 800 Q 200 950, 0 1100 L 0 0 Z');
+  animation: waveLeft 6s ease-in-out infinite;
+}
+
+/* Lignes ondulées animées - droite */
+.about .wavy-line-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.about .wavy-line-right::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 200px 150px at 100% 30%, rgba(251, 146, 60, 0.2), transparent),
+    radial-gradient(ellipse 250px 200px at 110% 70%, rgba(249, 115, 22, 0.15), transparent);
+  clip-path: path('M 250 0 Q 100 150, 250 300 Q 70 450, 250 600 Q 100 750, 250 900 Q 50 1050, 250 1200 L 250 0 Z');
+  animation: waveRight 6s ease-in-out infinite;
+}
+
+@keyframes waveLeft {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(-20px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes waveRight {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(20px);
+    opacity: 0.6;
+  }
 }
 
 .about-content {
@@ -9,6 +85,8 @@
   gap: 3rem;
   margin-bottom: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .about-image {
@@ -62,6 +140,8 @@
 /* Stack Technologique Section */
 .skills-section {
   margin-top: 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 .skills-main-title {

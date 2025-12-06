@@ -1,9 +1,51 @@
 import { FaEye, FaProjectDiagram, FaChevronDown } from 'react-icons/fa'
-import { useEffect, useRef, Suspense } from 'react'
+import { useEffect, useRef, Suspense, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, OrbitControls } from '@react-three/drei'
+import { useGLTF, OrbitControls, Html } from '@react-three/drei'
 import './Home.css'
+
+// Loader 3D pendant le chargement
+const Loader3D = () => {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) return 100
+        return prev + 10
+      })
+    }, 100)
+    return () => clearInterval(interval)
+  }, [])
+
+  const circumference = 2 * Math.PI * 45 // rayon = 45
+  const offset = circumference - (progress / 100) * circumference
+
+  return (
+    <Html center>
+      <div className="loader-3d">
+        <svg className="circular-progress" width="120" height="120">
+          <circle
+            className="progress-background"
+            cx="60"
+            cy="60"
+            r="45"
+          />
+          <circle
+            className="progress-bar"
+            cx="60"
+            cy="60"
+            r="45"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+          />
+        </svg>
+        <div className="loader-percentage">{progress}%</div>
+      </div>
+    </Html>
+  )
+}
 
 // Composant pour charger le modèle 3D
 const GamingPC = () => {
@@ -87,7 +129,7 @@ const Home = () => {
       {/* Modèle 3D en arrière-plan */}
       <div className="hero-3d-container">
         <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-          <Suspense fallback={null}>
+          <Suspense fallback={<Loader3D />}>
             <ambientLight intensity={0.5} />
             <spotLight position={[10, 10, 10]} angle={0.3} penumbra={1} intensity={1} />
             <pointLight position={[-8, 3, -5]} intensity={0.4} />

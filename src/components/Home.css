@@ -332,3 +332,38 @@
     font-size: 0.9rem;
   }
 }
+
+/* Loader 3D */
+.loader-3d {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress {
+  transform: rotate(-90deg);
+}
+
+.progress-background {
+  fill: none;
+  stroke: rgba(249, 115, 22, 0.2);
+  stroke-width: 8;
+}
+
+.progress-bar {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
+}
+
+.loader-percentage {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+}

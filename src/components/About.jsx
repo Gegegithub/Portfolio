@@ -315,33 +315,24 @@ const About = () => {
               </div>
             </div>
 
-            <motion.div
-              className="tech-category-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(249, 115, 22, 0.2)' }}
-            >
+            <div className="tech-category-card">
               <div className="category-header">
                 <FaChartBar className="category-icon" />
                 <h4>Visualisation de données</h4>
               </div>
               <div className="tech-stack-modern">
                 {techStacks.dataVisualization.map((tech, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="tech-badge"
                     style={{ '--tech-color': tech.color }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
                   >
                     {tech.icon}
                     <span>{tech.name}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>

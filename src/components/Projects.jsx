@@ -10,40 +10,51 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      category: 'IA / Machine Learning',
-      date: 'Novembre 2025',
-      title: 'Détection de Fraude Bancaire avec ML',
-      shortDescription: 'Modèle de Machine Learning pour détecter les transactions frauduleuses avec un dataset déséquilibré',
-      fullDescription: `Projet de Machine Learning visant à détecter automatiquement les fraudes bancaires à partir d'un dataset de transactions. Le défi principal : gérer un dataset fortement déséquilibré où les fraudes représentent moins de 1% des transactions.
+      category: 'IA / Machine Learning & Data Engineering',
+      date: 'Décembre 2025',
+      title: 'Détection de Fraude Bancaire - ML & Streaming Temps Réel',
+      shortDescription: 'Pipeline complète de détection de fraude : entraînement XGBoost sur dataset déséquilibré (0.17% fraudes), puis déploiement en production',
+      fullDescription: `Système complet de détection de fraude bancaire en deux phases : entraînement offline d'un modèle ML sur un dataset déséquilibré, puis déploiement en production avec une architecture de streaming temps réel.
 
-L'objectif : développer un modèle capable de distinguer les transactions légitimes des transactions frauduleuses en maximisant la détection des fraudes (Recall) tout en limitant les faux positifs.`,
+Le défi : Détecter les 492 fraudes cachées parmi 284,807 transactions (0.17%) tout en minimisant les faux positifs, dans un contexte de streaming temps réel (~1200 transactions/minute).`,
       architecture: [
-        'Analyse exploratoire des données (EDA) avec Pandas',
-        'Gestion du déséquilibre avec SMOTE',
-        'Feature engineering : variables temporelles et agrégations',
-        'Comparaison de modèles : Random Forest vs XGBoost',
-        'Optimisation des hyperparamètres avec GridSearchCV',
-        'Évaluation avec métriques adaptées (Precision, Recall, F1-Score, AUC-ROC)'
+        'Phase ML Offline : EDA avec Pandas sur 284,807 transactions',
+        'Preprocessing : StandardScaler + SMOTE pour rééquilibrage 50/50',
+        'Modélisation : Random Forest vs XGBoost avec GridSearchCV',
+        'Métriques : AUC-ROC >0.95, Recall ~85-90%, analyse Precision-Recall',
+        'Phase Streaming : Architecture Kafka + PostgreSQL + Docker',
+        'Producer : Simulation flux bancaire (~1200 tx/min) avec double-write pattern',
+        'Detector : Consumer Kafka avec inférence temps réel (latence ~10-20ms)',
+        'Visualisation : Dashboards Grafana avec métriques temps réel (auto-refresh 5-10s)'
       ],
-      aiIntegration: `Approche Machine Learning supervisée pour la classification binaire :
+      aiIntegration: `Pipeline de ML en production temps réel :
 
-- **Dataset déséquilibré** : ~0.17% de fraudes → nécessite SMOTE pour rééquilibrer
-- **Feature engineering** : création de variables dérivées (montants moyens, fréquence de transactions, ratios)
-- **Comparaison de modèles** : Random Forest et XGBoost
-- **Optimisation** : GridSearchCV pour trouver les meilleurs hyperparamètres
-- **Métriques** : Focus sur le Recall (détecter le maximum de fraudes) et l'AUC-ROC
+**Phase 1 - Machine Learning Offline** :
+- Dataset : 284,807 transactions (0.17% fraudes) avec 28 features PCA anonymisées
+- Preprocessing : StandardScaler + SMOTE (rééquilibrage 50/50 sur train)
+- Modélisation : XGBoost optimisé via GridSearchCV (max_depth, learning_rate, scale_pos_weight)
+- Performance : AUC-ROC >0.95, Recall ~85-90%, excellent compromis Precision-Recall
+- Sérialisation : Modèle XGBoost + Scaler sauvegardés avec joblib
 
-Le modèle final atteint un bon compromis entre détection des fraudes et limitation des faux positifs.`,
+**Phase 2 - Déploiement Streaming Temps Réel** :
+- Architecture : CSV → Producer → Kafka → Detector IA → PostgreSQL → Grafana
+- Producer : Simulation flux bancaire (1200 tx/min) avec double-write (PostgreSQL + Kafka)
+- Detector : Consumer Kafka avec pipeline d'inférence (extraction features → standardisation → prédiction → sauvegarde)
+- Performance : 629 fraudes détectées sur 127,020 transactions (0.495%), latence ~10-20ms/prédiction
+- Monitoring : Dashboards Grafana avec taux de fraude, top 10 probabilités, courbe temporelle`,
       achievements: [
-        'Analyser un dataset déséquilibré de transactions bancaires',
-        'Appliquer SMOTE pour gérer le déséquilibre des classes',
-        'Créer des features pertinentes avec Pandas',
-        'Comparer Random Forest et XGBoost',
-        'Optimiser les hyperparamètres avec GridSearchCV',
-        'Évaluer les performances avec Precision, Recall, F1-Score et AUC-ROC',
-        'Interpréter la matrice de confusion et courbe ROC'
+        'Gérer un dataset fortement déséquilibré avec SMOTE (0.17% fraudes)',
+        'Comparer et optimiser Random Forest vs XGBoost avec GridSearchCV',
+        'Évaluer avec métriques adaptées (Precision, Recall, F1, AUC-ROC, courbe ROC)',
+        'Concevoir une architecture de streaming avec Kafka (Producer-Consumer)',
+        'Implémenter un double-write pattern (PostgreSQL + Kafka)',
+        'Déployer un modèle ML en production avec inférence temps réel (~10-20ms)',
+        'Orchestrer des microservices avec Docker Compose (Kafka, Zookeeper, PostgreSQL, Grafana)',
+        'Créer des dashboards temps réel avec Grafana (auto-refresh, requêtes SQL optimisées)',
+        'Gérer les transactions PostgreSQL avec rollback et retry logic',
+        'Maîtriser un pipeline end-to-end de ML : de l\'entraînement au déploiement production'
       ],
-      technologies: ['Python', 'Pandas', 'Scikit-learn', 'XGBoost', 'SMOTE'],
+      technologies: ['Python', 'Pandas', 'XGBoost', 'Kafka', 'PostgreSQL', 'Docker', 'Grafana', 'SMOTE', 'Scikit-learn'],
       color: '#ef4444'
     },
     {

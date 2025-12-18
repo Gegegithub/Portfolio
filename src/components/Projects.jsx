@@ -9,68 +9,141 @@ const Projects = () => {
 
   const projects = [
     {
-      id: 1,
-      category: 'IA / Machine Learning & Data Engineering',
+      id: 10,
+      category: 'IA / NLP & RAG',
       date: 'Décembre 2025',
-      title: 'Détection de Fraude Bancaire - ML & Streaming Temps Réel',
-      shortDescription: 'Pipeline complète de détection de fraude : entraînement XGBoost sur dataset déséquilibré (0.17% fraudes), puis déploiement en production',
-      fullDescription: `Système complet de détection de fraude bancaire en deux phases : entraînement offline d'un modèle ML sur un dataset déséquilibré, puis déploiement en production avec une architecture de streaming temps réel.
+      title: 'Système RAG pour Interrogation Documentaire Avancée',
+      shortDescription: 'Solution de dialogue intelligente basée sur RAG (Retrieval-Augmented Generation) permettant d\'interroger et extraire des informations à partir de bases documentaires complexes',
+      fullDescription: `Conception d'une solution de dialogue avancée permettant d'interroger et d'extraire des informations à partir de bases documentaires complexes via une architecture RAG (Retrieval-Augmented Generation).
 
-Le défi : Détecter les 492 fraudes cachées parmi 284,807 transactions (0.17%) tout en minimisant les faux positifs, dans un contexte de streaming temps réel (~1200 transactions/minute).`,
+Le défi : Créer un système capable de comprendre des questions en langage naturel et de récupérer les informations pertinentes dans des documents volumineux, tout en générant des réponses contextualisées et précises.`,
       architecture: [
-        'Phase ML Offline : EDA avec Pandas sur 284,807 transactions',
-        'Preprocessing : StandardScaler + SMOTE pour rééquilibrage 50/50',
-        'Modélisation : Random Forest vs XGBoost avec GridSearchCV',
-        'Métriques : AUC-ROC >0.95, Recall ~85-90%, analyse Precision-Recall',
-        'Phase Streaming : Architecture Kafka + PostgreSQL + Docker',
-        'Producer : Simulation flux bancaire (~1200 tx/min) avec double-write pattern',
-        'Detector : Consumer Kafka avec inférence temps réel (latence ~10-20ms)',
-        'Visualisation : Dashboards Grafana avec métriques temps réel (auto-refresh 5-10s)'
+        'Architecture RAG : Retrieval (recherche) + Augmented Generation (génération)',
+        'Ingestion et preprocessing de documents complexes (PDF, Word, textes)',
+        'Chunking intelligent des documents pour optimiser la récupération',
+        'Embedding des chunks avec modèles de langage (sentence transformers)',
+        'Base vectorielle pour stockage et recherche sémantique rapide',
+        'Retrieval : recherche par similarité cosinus des passages pertinents',
+        'Augmentation du contexte : injection des passages dans le prompt LLM',
+        'Génération de réponses avec modèle de langage (GPT, LLaMA, etc.)',
+        'Interface de dialogue conversationnelle pour interaction utilisateur',
+        'Système de citations pour traçabilité des sources'
       ],
-      aiIntegration: `Pipeline de ML en production temps réel :
-
-**Phase 1 - Machine Learning Offline** :
-- Dataset : 284,807 transactions (0.17% fraudes) avec 28 features PCA anonymisées
-- Preprocessing : StandardScaler + SMOTE (rééquilibrage 50/50 sur train)
-- Modélisation : XGBoost optimisé via GridSearchCV (max_depth, learning_rate, scale_pos_weight)
-- Performance : AUC-ROC >0.95, Recall ~85-90%, excellent compromis Precision-Recall
-- Sérialisation : Modèle XGBoost + Scaler sauvegardés avec joblib
-
-**Phase 2 - Déploiement Streaming Temps Réel** :
-- Architecture : CSV → Producer → Kafka → Detector IA → PostgreSQL → Grafana
-- Producer : Simulation flux bancaire (1200 tx/min) avec double-write (PostgreSQL + Kafka)
-- Detector : Consumer Kafka avec pipeline d'inférence (extraction features → standardisation → prédiction → sauvegarde)
-- Performance : 629 fraudes détectées sur 127,020 transactions (0.495%), latence ~10-20ms/prédiction
-- Monitoring : Dashboards Grafana avec taux de fraude, top 10 probabilités, courbe temporelle`,
       achievements: [
-        'Gérer un dataset fortement déséquilibré avec SMOTE (0.17% fraudes)',
+        'Maîtriser l\'architecture RAG (Retrieval-Augmented Generation)',
+        'Implémenter un système de chunking intelligent avec preservation du contexte',
+        'Utiliser des embeddings vectoriels pour recherche sémantique',
+        'Déployer une base vectorielle pour stockage et retrieval rapide',
+        'Intégrer un LLM pour génération de réponses contextualisées',
+        'Créer un système de traçabilité avec citations de sources',
+        'Développer une interface conversationnelle intuitive',
+        'Gérer des documents multi-formats (PDF, Word, texte)',
+        'Optimiser la pertinence avec techniques de réranking',
+        'Concevoir un pipeline NLP end-to-end pour question-answering'
+      ],
+      technologies: ['Python', 'LangChain', 'OpenAI', 'FAISS', 'Sentence Transformers', 'ChromaDB', 'Streamlit', 'PyPDF2', 'Hugging Face'],
+      color: '#8b5cf6'
+    },
+    {
+      id: 1,
+      category: 'IA / Machine Learning',
+      date: 'Décembre 2025',
+      title: 'Architecture de détection de fraude bancaire en temps réel',
+      shortDescription: 'Architecture de surveillance financière de bout en bout avec Python,Docker et grafana permettant d\'intercepter des transactions frauduleuses au sein de flux massifs.',
+      fullDescription: `Système complet de détection de fraude bancaire en deux phases : entraînement offline d'un modèle ML sur un dataset déséquilibré avec méthodologie train/test rigoureuse, puis déploiement en production avec une architecture de streaming temps réel.
+
+Le défi : Détecter 9 fraudes sur 10 parmi 284,807 transactions (0.17% fraudes) avec seulement 0.3% de fausses alertes - un compromis optimal pour la production bancaire où manquer une fraude coûte bien plus cher que vérifier une transaction suspecte.`,
+      architecture: [
+        'Phase ML Offline : EDA avec Pandas sur 284,807 transactions (492 fraudes)',
+        'Split rigoureux : 80% train (227,845 tx) / 20% test (56,962 tx, 98 fraudes)',
+        'Preprocessing : StandardScaler + SMOTE (rééquilibrage 50/50 sur train uniquement)',
+        'Modélisation : Random Forest vs XGBoost avec GridSearchCV',
+        'Évaluation test set : 89.8% Recall, 99.68% Accuracy, ROC-AUC 0.978, 0.3% fausses alertes',
+        'Phase Streaming : Architecture Kafka + PostgreSQL + Docker sur test set (56,962 tx)',
+        'Producer : Simulation flux production avec double-write pattern (PostgreSQL + Kafka)',
+        'Detector : Consumer Kafka avec inférence temps réel (latence ~10-20ms)',
+        'Visualisation : Dashboards Grafana professionnels sans ground truth (auto-refresh 5-10s)'
+      ],
+      achievements: [
+        'Appliquer une méthodologie ML rigoureuse avec split train/test (80/20) sans data leakage',
+        'Gérer un dataset fortement déséquilibré avec SMOTE (0.17% fraudes, rééquilibrage train uniquement)',
         'Comparer et optimiser Random Forest vs XGBoost avec GridSearchCV',
-        'Évaluer avec métriques adaptées (Precision, Recall, F1, AUC-ROC, courbe ROC)',
-        'Concevoir une architecture de streaming avec Kafka (Producer-Consumer)',
-        'Implémenter un double-write pattern (PostgreSQL + Kafka)',
-        'Déployer un modèle ML en production avec inférence temps réel (~10-20ms)',
+        'Atteindre un compromis Precision/Recall optimal pour la production (89.8% Recall, 0.3% fausses alertes)',
+        'Évaluer rigoureusement sur test set avec métriques adaptées (ROC-AUC 0.978, Accuracy 99.68%)',
+        'Concevoir une architecture de streaming temps réel avec Kafka (Producer-Consumer)',
+        'Déployer un modèle ML en production avec inférence temps réel sur 56,962 transactions (~10-20ms/prédiction)',
         'Orchestrer des microservices avec Docker Compose (Kafka, Zookeeper, PostgreSQL, Grafana)',
-        'Créer des dashboards temps réel avec Grafana (auto-refresh, requêtes SQL optimisées)',
-        'Gérer les transactions PostgreSQL avec rollback et retry logic',
-        'Maîtriser un pipeline end-to-end de ML : de l\'entraînement au déploiement production'
+        'Créer des dashboards Grafana professionnels sans ground truth (simulation production réelle)',
+        'Maîtriser un pipeline end-to-end de ML : de l\'EDA rigoureuse au déploiement production validé'
       ],
       technologies: ['Python', 'Pandas', 'XGBoost', 'Kafka', 'PostgreSQL', 'Docker', 'Grafana', 'SMOTE', 'Scikit-learn'],
-      color: '#ef4444'
+      color: '#ef4444',
+      githubUrl: 'https://github.com/Gegegithub/Bank-fraud-detection.git'
+    },
+    {
+      id: 9,
+      category: 'IA / Computer Vision',
+      date: 'Décembre 2025',
+      title: 'Contrôle Qualité Automatisé de Câbles',
+      shortDescription: 'Application de détection automatique de défauts de longueur des câbles électriques en utilisant YOLOv8 et Flask.',
+      fullDescription: `Application de détection automatique de défauts de longueur des câbles électriques. Le système analyse des images de câbles, calcule leur longueur en centimètres et détermine s'ils sont conformes (20-40 cm) ou défectueux.
+
+Le défi : Remplacer les mesures manuelles de longueur par un système automatisé précis, capable de traiter plusieurs images en batch et de générer des rapports d'analyse pour le suivi qualité.`,
+      architecture: [
+        'Pipeline de mesure : Upload → Segmentation YOLOv8 → Squelettisation → Calcul longueur',
+        'Backend Flask avec endpoint /upload pour traitement temps réel',
+        'Segmentation du câble avec YOLOv8 pour isoler l\'objet',
+        'Squelettisation (skimage) pour extraire l\'axe central du câble',
+        'Conversion graphe NetworkX pour calculer le chemin le plus long',
+        'Calibration pixels → cm avec ratio configurable (config.py)',
+        'Stockage JSON avec métadonnées : ID horodaté, longueur, statut',
+        'Interface web responsive avec 3 pages : Test, Dashboard, Historique',
+        'Visualisations Chart.js : camembert OK/DÉFECTUEUX et évolution temporelle',
+        'Filtres analytics : plage de longueur et période (jour/semaine/mois)'
+      ],
+      achievements: [
+        'Déployer YOLOv8 pour la segmentation de câbles dans une application Flask',
+        'Implémenter un pipeline de mesure basé sur squelettisation et analyse de graphe',
+        'Concevoir un système de calibration pixels/cm pour des mesures précises',
+        'Développer une interface web complète avec navigation multi-pages',
+        'Créer un dashboard analytics avec Chart.js (graphique camembert + temporel)',
+        'Gérer le traitement batch d\'images avec système de slideshow',
+        'Implémenter des filtres avancés (longueur min/max, période) avec mise à jour dynamique',
+        'Générer des rapports PDF professionnels avec jsPDF et autoTable',
+        'Concevoir un système de traçabilité avec IDs horodatés et stockage JSON',
+        'Déployer un projet IA end-to-end : du modèle à l\'application web fonctionnelle'
+      ],
+      technologies: ['Flask', 'YOLOv8','Python', 'NetworkX', 'skimage'],
+      color: '#f59e0b',
+      githubUrl: 'https://github.com/votre-username/detection-defauts-cables'
     },
     {
       id: 2,
       category: 'IA / NLP',
       date: 'Novembre 2025',
-      title: 'Chatbot Personnalisé avec Fine-tuning',
-      shortDescription: 'Chatbot intelligent développé avec fine-tuning LoRA sur des modèles de langage et déployé via Hugging Face avec intégration Telegram',
-      fullDescription: 'Chatbot intelligent développé avec fine-tuning LoRA sur des modèles de langage, entraîné sur Google Colab et déployé via Hugging Face avec intégration Telegram.',
-      achievements: [
-        'Fine-tuning réussi avec LoRA sur dataset conversationnel',
-        'Entraînement optimisé sur Google Colab',
-        'Export et déploiement sur Hugging Face',
-        'Intégration automatisée avec Telegram via n8n'
+      title: 'Chatbot Personnalisé avec Fine-tuning LLaMA 3',
+      shortDescription: 'Fine-tuning de LLaMA 3 avec LoRA sur un dataset personnalisé de mes conversations pour créer un chatbot adoptant mon ton et mon style conversationnel',
+      fullDescription: `Projet de personnalisation d'un Large Language Model via fine-tuning : j'ai entraîné LLaMA 3 sur un dataset constitué de mes propres conversations pour que le modèle reproduise fidèlement mon ton, mon style d'expression et ma manière de communiquer.
+
+Le défi : Créer un assistant conversationnel qui ne se contente pas de répondre correctement, mais qui le fait avec ma personnalité - en capturant mes tournures de phrases, mon niveau de langage et mes expressions caractéristiques.`,
+      architecture: [
+        'Collecte et preprocessing d\'un dataset personnalisé de conversations',
+        'Fine-tuning de LLaMA 3 (8B paramètres) avec la technique LoRA (Low-Rank Adaptation)',
+        'Entraînement sur Google Colab avec optimisations GPU',
+        'Export du modèle fine-tuné vers Hugging Face Hub',
+        'Déploiement avec API Hugging Face Inference',
+        'Intégration Telegram via n8n pour automatisation conversationnelle'
       ],
-      technologies: ['Transformers', 'LoRA', 'Hugging Face', 'n8n', 'Telegram'],
+      achievements: [
+        'Construire un dataset conversationnel personnalisé à partir de mes échanges réels',
+        'Maîtriser le fine-tuning de LLM avec LoRA pour réduire les coûts computationnels',
+        'Entraîner LLaMA 3 pour reproduire mon ton et style conversationnel personnel',
+        'Optimiser l\'entraînement sur Google Colab avec contraintes GPU limitées',
+        'Déployer le modèle sur Hugging Face pour inférence accessible',
+        'Automatiser l\'intégration avec Telegram via n8n (workflow no-code)',
+        'Comprendre les enjeux du fine-tuning : équilibre entre personnalisation et capacités générales'
+      ],
+      technologies: ['LLaMA 3', 'LoRA', 'Transformers', 'Hugging Face', 'Google Colab', 'n8n', 'Telegram Bot API'],
       color: '#ec4899'
     },
     {
@@ -98,7 +171,7 @@ J'ai utilisé l'architecture U-Net, particulièrement adaptée pour la segmentat
       category: 'IA / Deep Learning',
       date: 'Octobre 2025',
       title: 'Détection de Tumeurs Cérébrales par Deep Learning',
-      shortDescription: 'Comparaison CNN personnalisé vs Transfer Learning (ResNet50) pour la détection automatique de tumeurs sur images IRM du cerveau',
+      shortDescription: 'CNN personnalisé vs Transfer Learning (ResNet50) pour la détection automatique de tumeurs sur images IRM du cerveau',
       fullDescription: `Dans le cadre d'un projet d'exploration en Deep Learning, j'ai travaillé sur des images IRM du cerveau pour développer un modèle capable de détecter automatiquement la présence ou non d'une tumeur.
 
 L'objectif : comparer un modèle CNN personnalisé à une approche de Transfer Learning avec ResNet50. J'ai d'abord conçu un réseau de neurones convolutionnel (CNN) entièrement entraîné de zéro, qui a appris seul à reconnaître les motifs caractéristiques des tumeurs. Au début, j'ai un peu galéré à obtenir une accuracy de validation et de test satisfaisante, car le modèle avait tendance à surapprendre les données d'entrainement. En parallèle, j'ai testé ResNet50, un modèle pré-entraîné grâce au Transfer Learning, tirant parti de connaissances déjà acquises sur de grands ensembles d'images comme ImageNet.`,
@@ -109,9 +182,6 @@ L'objectif : comparer un modèle CNN personnalisé à une approche de Transfer L
         'Augmentation de données pour renforcer la robustesse',
         'Suivi des expériences avec ClearML'
       ],
-      aiIntegration: `Résultat : le modèle pré-entraîné a bien évidemment convergé plus vite et démontré une meilleure capacité de généralisation. Malgré la supériorité évidente du ResNet50, concevoir un CNN personnalisé à partir de données limitées m'a permis de plonger au cœur du fonctionnement d'un réseau de neurones. J'ai ainsi pu expérimenter concrètement l'impact des hyperparamètres, comprendre le rôle essentiel de la régularisation et mesurer l'efficacité de l'augmentation de données pour renforcer la robustesse et la performance du modèle.
-
-Pour le suivi et la sauvegarde des expériences, j'ai utilisé ClearML, un superbe outil open source d'expérimentation et de traçabilité des modèles IA. Il m'a permis de suivre en temps réel les métriques, visualiser les courbes d'apprentissage, et comparer facilement plusieurs versions de modèles.`,
       achievements: [
         'Concevoir et entraîner un CNN from scratch pour la détection de tumeurs',
         'Implémenter le Transfer Learning avec ResNet50',
@@ -127,9 +197,9 @@ Pour le suivi et la sauvegarde des expériences, j'ai utilisé ClearML, un super
       id: 5,
       category: 'Big Data',
       date: 'Juin 2025',
-      title: 'Pipeline de Maintenance Prédictive',
-      shortDescription: 'Pipeline temps réel de collecte des données machine et détection prédictive de pannes pour une raffinerie de pétrole',
-      fullDescription: `Dans le cadre d'un projet d'école, j'ai conçu une pipeline complète de traitement de données IoT industrielles en temps réel, en combinant plusieurs technologies que sont : MQTT, Kafka, Spark, MinIO, TimescaleDB et Grafana.
+      title: 'Architecture IoT pour la supervision industrielle en temps réel',
+      shortDescription: 'Architecture temps réel de collecte des données machine et détection prédictive de pannes pour une raffinerie de pétrole',
+      fullDescription: `Dans le cadre d'un projet Académique, j'ai conçu une pipeline complète de traitement de données IoT industrielles en temps réel, en combinant plusieurs technologies que sont : MQTT, Kafka, Spark, MinIO, TimescaleDB et Grafana.
 
 L'objectif : construire un système capable de collecter, traiter, stocker et visualiser en continu des données de capteurs simulés (température & vibration), tout en explorant l'intégration d'une composante IA.`,
       architecture: [
@@ -141,9 +211,6 @@ L'objectif : construire un système capable de collecter, traiter, stocker et vi
         'TimescaleDB pour les données nettoyées et agrégées',
         'Grafana pour la visualisation temps réel'
       ],
-      aiIntegration: `À partir des données historisées sur MinIO, j'ai entraîné un modèle de classification binaire (RandomForest) capable de détecter les tendances haussières de température annonçant un risque de dépassement du seuil critique de 150 °C.
-Le modèle s'appuie sur une fenêtre glissante de 10 valeurs pour prédire les 10 secondes suivantes.
-Les prédictions sont visibles dans Grafana pour aider un opérateur humain à anticiper et réagir avant une situation critique.`,
       achievements: [
         'Déployer une architecture IoT temps réel complète',
         'Comprendre les interactions entre messagerie, stream processing et bases temporelles',

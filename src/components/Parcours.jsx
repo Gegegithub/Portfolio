@@ -14,12 +14,6 @@ const Parcours = () => {
       etablissement: 'EIGSI Casablanca',
       lieu: 'Casablanca, Maroc',
       description: 'Formation d\'ingénieur en Data Science, Big Data et Intelligence Artificielle, couvrant les aspects théoriques et pratiques des technologies avancées.',
-      modules: [
-        'Machine Learning & Deep Learning',
-        'Big Data & Cloud Computing',
-        'Intelligence Artificielle & Traitement du Langage Naturel',
-        'Computer Vision & Image/Video Processing'
-      ],
       statut: 'En cours'
     },
     {

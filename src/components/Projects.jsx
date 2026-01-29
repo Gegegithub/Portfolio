@@ -11,37 +11,39 @@ const Projects = () => {
     {
       id: 10,
       category: 'IA / NLP & RAG',
-      date: 'Décembre 2025',
-      title: 'Système RAG pour Interrogation Documentaire Avancée',
-      shortDescription: 'Solution de dialogue intelligente basée sur RAG (Retrieval-Augmented Generation) permettant d\'interroger et extraire des informations à partir de bases documentaires complexes',
-      fullDescription: `Conception d'une solution de dialogue avancée permettant d'interroger et d'extraire des informations à partir de bases documentaires complexes via une architecture RAG (Retrieval-Augmented Generation).
+      date: 'Janvier 2026',
+      title: 'Système RAG Multimodal pour Interrogation Documentaire',
+      shortDescription: 'Moteur de recherche intelligent sur documents personnels (PDFs et images) utilisant Gemini et la recherche vectorielle pour répondre aux questions en langage naturel',
+      fullDescription: `Création d'un moteur de recherche intelligent permettant d'interroger vos propres documents (PDFs et images) grâce à l'IA.
 
-Le défi : Créer un système capable de comprendre des questions en langage naturel et de récupérer les informations pertinentes dans des documents volumineux, tout en générant des réponses contextualisées et précises.`,
+Le principe : Vous posez une question en langage naturel → Le système trouve les passages pertinents dans vos documents → L'IA génère une réponse basée sur ces passages.
+
+Ce qui rend ce système "multimodal" : il gère à la fois le texte (extrait des PDFs et découpé en chunks) et les images (converties en descriptions textuelles par Gemini avant indexation).
+
+En résumé : Un chatbot qui répond à vos questions en se basant uniquement sur vos propres documents (PDFs et images), grâce à la recherche vectorielle et Gemini.`,
       architecture: [
-        'Architecture RAG : Retrieval (recherche) + Augmented Generation (génération)',
-        'Ingestion et preprocessing de documents complexes (PDF, Word, textes)',
-        'Chunking intelligent des documents pour optimiser la récupération',
-        'Embedding des chunks avec modèles de langage (sentence transformers)',
-        'Base vectorielle pour stockage et recherche sémantique rapide',
-        'Retrieval : recherche par similarité cosinus des passages pertinents',
-        'Augmentation du contexte : injection des passages dans le prompt LLM',
-        'Génération de réponses avec modèle de langage (GPT, LLaMA, etc.)',
-        'Interface de dialogue conversationnelle pour interaction utilisateur',
-        'Système de citations pour traçabilité des sources'
+        'Phase 1 - Indexation (ingest.py) : Lecture des PDFs/images → Découpage en chunks → Conversion en vecteurs → Stockage en base',
+        'Phase 2 - Interrogation (app.py) : Réception de la question → Recherche des passages similaires → Génération de la réponse',
+        'Gemini Flash : Génération des réponses et description des images (captioning)',
+        'Gemini Embedding : Conversion du texte en vecteurs (768 dimensions)',
+        'PostgreSQL + pgvector : Stockage et recherche vectorielle efficace',
+        'Docker : Hébergement de la base de données PostgreSQL',
+        'Streamlit : Interface web interactive pour l\'utilisateur',
+        'Pipeline multimodal : Texte extrait des PDFs + Images converties en descriptions'
       ],
       achievements: [
-        'Maîtriser l\'architecture RAG (Retrieval-Augmented Generation)',
-        'Implémenter un système de chunking intelligent avec preservation du contexte',
-        'Utiliser des embeddings vectoriels pour recherche sémantique',
-        'Déployer une base vectorielle pour stockage et retrieval rapide',
-        'Intégrer un LLM pour génération de réponses contextualisées',
-        'Créer un système de traçabilité avec citations de sources',
-        'Développer une interface conversationnelle intuitive',
-        'Gérer des documents multi-formats (PDF, Word, texte)',
-        'Optimiser la pertinence avec techniques de réranking',
-        'Concevoir un pipeline NLP end-to-end pour question-answering'
+        'Concevoir une architecture RAG multimodale complète (texte + images)',
+        'Implémenter un pipeline d\'indexation avec ingest.py pour PDFs et images',
+        'Utiliser Gemini Flash pour la génération de réponses et le captioning d\'images',
+        'Maîtriser les embeddings vectoriels avec Gemini Embedding (768 dimensions)',
+        'Déployer PostgreSQL avec l\'extension pgvector pour la recherche sémantique',
+        'Containeriser la base de données avec Docker (docker-compose.yml)',
+        'Développer une interface utilisateur intuitive avec Streamlit',
+        'Structurer le code en modules : app.py, rag_core.py, ingest.py, db.py, gemini_utils.py',
+        'Gérer le traitement multimodal : extraction texte PDF + description images par IA',
+        'Créer un système de question-answering end-to-end sur documents personnels'
       ],
-      technologies: ['Python', 'LangChain', 'OpenAI', 'FAISS', 'Sentence Transformers', 'ChromaDB', 'Streamlit', 'PyPDF2', 'Hugging Face'],
+      technologies: ['Python', 'Gemini Flash', 'Gemini Embedding', 'PostgreSQL', 'pgvector', 'Streamlit', 'Docker'],
       color: '#8b5cf6'
     },
     {

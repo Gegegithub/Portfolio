@@ -44,7 +44,8 @@ En résumé : Un chatbot qui répond à vos questions en se basant uniquement su
         'Créer un système de question-answering end-to-end sur documents personnels'
       ],
       technologies: ['Python', 'Gemini Flash', 'Gemini Embedding', 'PostgreSQL', 'pgvector', 'Streamlit', 'Docker'],
-      color: '#8b5cf6'
+      color: '#8b5cf6',
+      githubUrl: 'https://github.com/Gegegithub/Rag-Multimodal'
     },
     {
       id: 1,

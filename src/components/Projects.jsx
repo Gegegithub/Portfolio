@@ -9,6 +9,39 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 11,
+      category: 'IA / NLP & RAG',
+      date: 'Février 2026',
+      title: 'Talk2CVs - Assistant Recruteur Local',
+      shortDescription: 'Système RAG 100% local permettant d\'interroger des CVs en langage naturel avec Ollama, ChromaDB et LangChain, sans aucune donnée envoyée vers le cloud.',
+      fullDescription: `Application de recrutement assistée par IA qui permet d'importer des CVs en PDF et de les interroger en langage naturel via un chatbot intelligent.
+
+Le principe : Vous uploadez des CVs → Le système les découpe et les indexe en base vectorielle → Vous posez vos questions ("Qui maîtrise Python et Kafka ?") → L'IA retourne uniquement les candidats correspondant à tous les critères avec preuves extraites des CVs.
+
+Le défi : Construire un système entièrement local (RGPD-compliant) capable de comprendre le contexte des conversations, d'éviter les hallucinations et de ne jamais confondre les informations entre candidats.`,
+      architecture: [
+        'Upload des CVs via interface chat → Sauvegarde dans /data',
+        'Ingestion : pypdf extrait le texte → Découpage en chunks (500 chars) → Embeddings MiniLM-L6-v2 → Stockage ChromaDB',
+        'Retrieval : Question convertie en vecteur → Recherche similarité top-15 chunks → Formatage avec séparateurs par candidat',
+        'Génération : Prompt système strict + historique conversation (6 derniers messages) + contexte → Ollama (Llama 3.1 8B)',
+        'Extraction intelligente des noms : depuis le filename ou par regex sur le contenu du CV',
+        'Interface Streamlit style Gemini : écran d\'accueil, suggestions cliquables, sidebar statistiques'
+      ],
+      achievements: [
+        'Concevoir une architecture RAG complète avec LangChain LCEL (sans les chaînes dépréciées)',
+        'Déployer un LLM local avec Ollama (Llama 3.1 8B) sans dépendance cloud',
+        'Implémenter une base vectorielle persistante avec ChromaDB et embeddings HuggingFace',
+        'Gérer la mémoire conversationnelle pour les questions de suivi',
+        'Résoudre les problèmes d\'hallucination et de confusion entre candidats via prompt engineering',
+        'Développer un système d\'extraction de noms intelligent (filename + contenu)',
+        'Créer une interface Streamlit moderne avec upload intégré au chat',
+        'Garantir la conformité RGPD : 100% des données restent en local'
+      ],
+      technologies: ['Python', 'LangChain', 'Ollama', 'Llama 3.1', 'ChromaDB', 'HuggingFace', 'Streamlit'],
+      color: '#8b5cf6',
+      githubUrl: 'https://github.com/Gegegithub/Talk-2-CVs'
+    },
+    {
       id: 10,
       category: 'IA / NLP & RAG',
       date: 'Janvier 2026',

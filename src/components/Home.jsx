@@ -182,7 +182,7 @@ const Home = () => {
             </motion.button>
           </motion.div>
           <motion.p className="availability-message" variants={itemVariants}>
-            Disponible pour un stage PFE (Janvier 2026)
+            Disponible pour un stage PFE (Février 2026)
           </motion.p>
         </motion.div>
       </div>

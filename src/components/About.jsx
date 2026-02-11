@@ -141,7 +141,7 @@ const About = () => {
             <p className="about-description">
               Actuellement en cycle ingénieur à l'EIGSI Casablanca, je me spécialise en Data Science et Intelligence Artificielle. Je m'intéresse particulièrement aux modèles de Machine Learning et Deep Learning, ainsi qu'aux méthodes de traitement de données à grande échelle.
               Au cours de mon parcours, j'ai eu l'occasion de travailler sur plusieurs projets académiques et personnels qui m'ont permis de renforcer mes compétences.
-              Actuellement à la recherche d'un stage PFE de 6 mois à partir de janvier 2026, je souhaite rejoindre une équipe où je pourrai continuer à apprendre tout en contribuant à des projets liés à la Data et à l'Intelligence Artificielle.
+              Actuellement à la recherche d'un stage PFE de 6 mois à partir de Février 2026, je souhaite rejoindre une équipe où je pourrai continuer à apprendre tout en contribuant à des projets liés à la Data et à l'Intelligence Artificielle.
             </p>
             <div className="about-info">
               <div className="info-item">

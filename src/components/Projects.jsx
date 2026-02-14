@@ -12,34 +12,34 @@ const Projects = () => {
       id: 11,
       category: 'IA / NLP & RAG',
       date: 'Février 2026',
-      title: 'Talk2CVs - Assistant Recruteur Local',
-      shortDescription: 'Système RAG 100% local permettant d\'interroger des CVs en langage naturel avec Ollama, ChromaDB et LangChain, sans aucune donnée envoyée vers le cloud.',
-      fullDescription: `Application de recrutement assistée par IA qui permet d'importer des CVs en PDF et de les interroger en langage naturel via un chatbot intelligent.
+      title: 'ResumeRadar - Scoring Hybride de CVs',
+      shortDescription: 'Système de tri de CVs 100% local combinant scoring mathématique par embeddings (similarité cosinus) et évaluation contextuelle par LLM, sans aucune donnée envoyée vers le cloud.',
+      fullDescription: `Application de recrutement assistée par IA. On uploade des CVs en PDF + une description de poste, et le système note chaque candidat via un pipeline en 3 étapes.
 
-Le principe : Vous uploadez des CVs → Le système les découpe et les indexe en base vectorielle → Vous posez vos questions ("Qui maîtrise Python et Kafka ?") → L'IA retourne uniquement les candidats correspondant à tous les critères avec preuves extraites des CVs.
+Stage 1 : les CVs sont découpés en chunks, transformés en vecteurs par un modèle d'embeddings multilingue, et comparés mathématiquement au poste (similarité cosinus, 30% du score). Stage 2 : le LLM local (Llama 3.1 8B via Ollama) lit chaque CV et évalue sur 3 critères métier : adéquation métier, hard skills et expérience pertinente, chacun noté de 0 à 100 (70% du score). Stage 3 : le LLM génère une synthèse finale pour le recruteur.
 
-Le défi : Construire un système entièrement local (RGPD-compliant) capable de comprendre le contexte des conversations, d'éviter les hallucinations et de ne jamais confondre les informations entre candidats.`,
+Le défi : faire tourner le tout sur une RTX 3050 Ti (4 Go VRAM) en optimisant la fenêtre de contexte (2048 tokens) et en gérant les fallbacks en cas de mémoire GPU insuffisante.`,
       architecture: [
-        'Upload des CVs via interface chat → Sauvegarde dans /data',
-        'Ingestion : pypdf extrait le texte → Découpage en chunks (500 chars) → Embeddings MiniLM-L6-v2 → Stockage ChromaDB',
-        'Retrieval : Question convertie en vecteur → Recherche similarité top-15 chunks → Formatage avec séparateurs par candidat',
-        'Génération : Prompt système strict + historique conversation (6 derniers messages) + contexte → Ollama (Llama 3.1 8B)',
-        'Extraction intelligente des noms : depuis le filename ou par regex sur le contenu du CV',
-        'Interface Streamlit style Gemini : écran d\'accueil, suggestions cliquables, sidebar statistiques'
+        'Upload des CVs (PDF) + description du poste via interface Streamlit',
+        'Parsing : pypdf extrait le texte, regex extrait l\'email, nom déduit du filename',
+        'Stage 1 (30%) : découpage en chunks (500 chars, 50 overlap) → embeddings paraphrase-multilingual-mpnet-base-v2 (768 dims, CPU) → cosinus entre chaque chunk et le poste → moyenne top-3 chunks',
+        'Stage 2 (70%) : LLM Ollama (Llama 3.1 8B, GPU) évalue chaque CV tronqué à 2000 chars sur 3 critères métier → réponse JSON structurée',
+        'Score final = 0.3 × cosinus + 0.7 × LLM → tri décroissant → top-N candidats',
+        'Stage 3 : synthèse LLM globale à partir des scores et justifications (pas des CVs bruts)',
+        'Affichage : tableau de classement + détails par candidat + synthèse + aperçu PDF + contact mailto groupé'
       ],
       achievements: [
-        'Concevoir une architecture RAG complète avec LangChain LCEL (sans les chaînes dépréciées)',
-        'Déployer un LLM local avec Ollama (Llama 3.1 8B) sans dépendance cloud',
-        'Implémenter une base vectorielle persistante avec ChromaDB et embeddings HuggingFace',
-        'Gérer la mémoire conversationnelle pour les questions de suivi',
-        'Résoudre les problèmes d\'hallucination et de confusion entre candidats via prompt engineering',
-        'Développer un système d\'extraction de noms intelligent (filename + contenu)',
-        'Créer une interface Streamlit moderne avec upload intégré au chat',
-        'Garantir la conformité RGPD : 100% des données restent en local'
+        'Concevoir un pipeline de scoring hybride multi-stage (bi-encoder + LLM reranker)',
+        'Optimiser l\'inférence LLM locale pour une RTX 3050 Ti (4 Go VRAM, contexte 2048 tokens)',
+        'Implémenter un modèle d\'embeddings multilingue (768 dims, 50+ langues) sur CPU sans consommer de VRAM',
+        'Construire un parsing robuste des réponses JSON du LLM avec fallback automatique',
+        'Gérer le fallback GPU : si CUDA crash, bascule sur le score cosinus seul avec warning',
+        'Développer une interface Streamlit avec aperçu PDF intégré et contact groupé par mailto BCC',
+        'Garantir la conformité RGPD : 100% des données et modèles restent en local'
       ],
-      technologies: ['Python', 'LangChain', 'Ollama', 'Llama 3.1', 'ChromaDB', 'HuggingFace', 'Streamlit'],
+      technologies: ['Python', 'Streamlit', 'Ollama', 'Llama 3.1', 'LangChain', 'sentence-transformers', 'pypdf'],
       color: '#8b5cf6',
-      githubUrl: 'https://github.com/Gegegithub/Talk-2-CVs'
+      githubUrl: 'https://github.com/Gegegithub/ResumeRadar.git'
     },
     {
       id: 10,
